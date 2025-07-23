@@ -1,85 +1,169 @@
-# Coffee Shop POS System (Local Deployment) - v0.2
+# Cafe24 POS System (Local Deployment) - v1.0
 
 ## 1. Project Overview
 
-This project is Version 0.2 of a Point of Sale (POS) system designed for a fast-paced coffee shop environment. It now features a robust, JWT-protected Flask backend and a modern React PWA frontend, with a focus on clear API conventions and maintainable, future-proof code. The workflow supports parallel backend/frontend development with synchronized file access.
+Cafe24 is a comprehensive Point of Sale (POS) system designed for modern cafe and restaurant environments. This production-ready system features a robust JWT-protected Flask backend and a modern React Progressive Web App (PWA) frontend. The system is built with scalability, security, and user experience in mind, supporting multiple user roles and a complete order management workflow.
 
-## 2. Key Features (v0.2 - Major Updates)
+## 2. Key Features
 
-*   **Menu Management (Manager UI):**
-    *   Fully rewritten MenuManager component in React.
-    *   All API calls use `/api/v1/menu-items` and `/api/v1/categories` endpoints.
-    *   JWT Authorization header is included in every request.
-    *   Data model fields match backend: `base_price_usd`, `is_active`, etc.
-    *   Modern, responsive UI with robust CRUD operations for menu items.
-    *   **Category management now supports add, edit, and delete.**
-    *   **Menu item options/choices management UI is coming soon.**
-*   **Backend Improvements:**
-    *   All endpoints expect JWT-based authentication and role-based access.
-    *   Consistent data model and endpoint structure.
-    *   New endpoint `/api/v1/ingredients/<id>/usage` lists menu items using an ingredient.
-*   **Workflow:**
-    *   Parallel development: backend (Flask, in `app/`) and frontend (React, in `pwa_frontend/`).
-    *   Editors (Cursor for backend, Windsurf for frontend) work on the same local files for instant updates.
-    *   All changes are committed to GitHub for seamless collaboration and migration between machines.
+### Core Functionality
+- **Multi-role System**: Supports Managers, Cashiers, Baristas, and Couriers with role-based access control
+- **Order Management**: Complete order lifecycle from creation to completion
+- **Menu Management**: Full CRUD operations for menu items, categories, and ingredients
+- **Inventory Tracking**: Real-time ingredient usage and stock level monitoring
+- **Reporting**: Sales analytics and business insights
 
-## 3. Technology Stack
+### Order Workflow
+1. **Order Creation**: Cashiers create new orders with items and customizations
+2. **Payment Processing**: Mark orders as paid with support for multiple payment methods
+3. **Order Preparation**: Baristas view and update order status during preparation
+4. **Order Fulfillment**: Couriers mark orders as ready for pickup or delivered
+5. **Completion**: Orders are archived with complete transaction history
 
-*   **Backend:** Python (Flask), PostgreSQL/MySQL, JWT, SQLAlchemy
-*   **Frontend:** React (PWA), Axios, Modern CSS
-*   **API:** RESTful, JWT-protected, versioned endpoints
+### Technical Highlights
+- **Backend**: Python (Flask), SQLite (production-ready with PostgreSQL support)
+- **Frontend**: React PWA with Material-UI for responsive design
+- **Authentication**: JWT-based authentication with role-based access control
+- **API**: RESTful endpoints with consistent error handling and validation
 
-## 4. System Architecture Overview
+## 3. System Architecture
 
-1.  **PWA Frontend:** Single codebase for all roles, robust Manager dashboard for menu and category management.
-2.  **Python Backend API:** Handles business logic, authentication, and data persistence.
-3.  **Database Server:** Stores all persistent data.
-4.  **Local Network:** All devices communicate over local network.
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  React PWA      │ ◄──►│  Flask API      │ ◄──►│  SQLite/        │
+│  (Frontend)     │     │  (Backend)      │     │  PostgreSQL     │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+```
 
-## 5. Getting Started
+## 4. Getting Started
+
+### Prerequisites
+- Python 3.8+
+- Node.js 14+
+- npm or yarn
 
 ### Backend Setup
 
-1.  See previous instructions (unchanged).
+1. Clone the repository
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Initialize the database:
+   ```bash
+   python init_db.py
+   ```
+5. Start the development server:
+   ```bash
+   python run.py
+   ```
 
-### Frontend PWA Setup
+### Frontend Setup
 
-1.  See previous instructions (unchanged).
-2.  To launch the React development server, navigate to `pwa_frontend` and run `npm start`.
-3.  Ensure your `.env` file in `pwa_frontend/` sets `REACT_APP_API_URL` to your backend server address.
+1. Navigate to the frontend directory:
+   ```bash
+   cd pwa_frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file with:
+   ```
+   REACT_APP_API_URL=http://localhost:5000
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-### MenuManager Component (Frontend)
+## 5. User Roles
 
-*   Located at `pwa_frontend/src/components/MenuManager.js`.
-*   Uses correct endpoints and JWT headers for all CRUD operations.
-*   Data model fields: `name`, `description`, `base_price_usd`, `category_id`, `is_active`.
-*   UI is modern, responsive, and robust.
-*   **Menu item options/choices management UI is coming soon.**
+### Manager
+- Full system access
+- Menu and inventory management
+- User management
+- Reporting and analytics
 
-### CategoryManager Component (Frontend)
+### Cashier
+- Create and manage orders
+- Process payments
+- View order status
 
-*   Located at `pwa_frontend/src/components/CategoryManager.js`.
-*   Supports adding, editing, and deleting categories.
-*   To add a category: Fill in the name (and optional sort order) and click "Add Category".
-*   To edit a category: Click "Edit" next to a category, modify the fields, and click "Save".
-*   To delete a category: Click "Delete" and confirm the action.
+### Barista
+- View active orders
+- Update order preparation status
+- Manage drink preparation queue
 
-## 6. Workflow & Collaboration
+### Courier
+- View orders ready for delivery
+- Update delivery status
+- Mark orders as completed
 
-*   Use Cursor for backend (`app/`), Windsurf for frontend (`pwa_frontend/`).
-*   All changes are committed and pushed to GitHub.
+## 6. API Documentation
 
-## 7. Manual Tests
+The API follows RESTful conventions and is versioned under `/api/v1/`. All endpoints require JWT authentication.
 
-Example scripts for local API testing now live in `manual_tests/`. They require
-a running instance of the application and are excluded from automated test runs.
+### Authentication
+- `POST /api/v1/auth/login` - User login
+- `POST /api/v1/auth/refresh` - Refresh access token
 
-## 8. What's Next
+### Orders
+- `GET /api/v1/orders` - List all orders
+- `POST /api/v1/orders` - Create new order
+- `GET /api/v1/orders/active` - Get active orders
+- `PUT /api/v1/orders/{id}/status` - Update order status
 
-*   Expand Manager dashboard to support options and choices.
-*   Add more robust error handling and user feedback.
-*   Continue to keep backend and frontend in sync with data model and endpoint conventions.
+## 7. Development Workflow
+
+1. **Backend Development**: Work in the `app/` directory
+2. **Frontend Development**: Work in the `pwa_frontend/` directory
+3. **Database Migrations**: Use Alembic for schema changes
+4. **Testing**: Run tests with `pytest`
+
+## 8. Deployment
+
+### Production Requirements
+- Gunicorn or uWSGI for production server
+- PostgreSQL for production database
+- Nginx as reverse proxy
+- Environment variables for configuration
+
+### Environment Variables
+```
+FLASK_APP=run.py
+FLASK_ENV=production
+DATABASE_URL=postgresql://user:password@localhost/dbname
+SECRET_KEY=your-secret-key
+JWT_SECRET_KEY=your-jwt-secret
+```
+
+## 9. Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 10. License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 11. Future Enhancements
+
+- Real-time order updates with WebSockets
+- Mobile app for couriers
+- Advanced reporting and analytics
+- Integration with payment gateways
+- Customer loyalty program
 
 ---
-This README is up to date as of v0.2.
-See [docs/last_9_tasks.md](docs/last_9_tasks.md) for a summary of recent tasks.
+This README is up to date as of v1.0

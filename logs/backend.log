@@ -1166,3 +1166,984 @@
 2025-07-23 11:23:38,625 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
 2025-07-23 11:23:38,626 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
 2025-07-23 11:23:38,626 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:38] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:23:41,721 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:41,722 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:23:41,723 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:41] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:23:41,730 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:41,731 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:23:41,732 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:41] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:23:43,621 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:43,622 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:23:43,623 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:43] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:23:46,720 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:46,721 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:23:46,721 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:46] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:23:48,625 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:48,625 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:23:48,626 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:48] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:23:48,627 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:48,627 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:23:48,627 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:48] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:23:51,722 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:51,722 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:23:51,723 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:51] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:23:51,726 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:51,727 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:23:51,727 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:51] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:23:53,626 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:53,627 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:23:53,627 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:53] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:23:56,720 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:56,721 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:23:56,722 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:56] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:23:58,628 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:58,628 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:23:58,628 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:58] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:23:58,629 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:23:58,630 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:23:58,630 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:23:58] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:01,721 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:01,722 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:01,722 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:01] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:01,730 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:01,732 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:01,732 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:01] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:03,628 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:03,630 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:03,633 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:03] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:06,949 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:06,949 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:06,950 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:06] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:06,953 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:06,954 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:06,954 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:06] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:08,629 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:08,630 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:08,630 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:08] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:08,632 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:08,633 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:08,634 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:08] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:11,949 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:11,949 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:11,949 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:13,630 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:13,630 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:13,631 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:13] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:16,951 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:16,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:16,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:16] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:16,954 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:16,955 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:16,956 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:16] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:18,631 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:18,632 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:18,633 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:18] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:18,636 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:18,638 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:18,638 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:18] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:21,951 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:21,952 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:21,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:21] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:23,632 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:23,634 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:23,635 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:23] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:26,952 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:26,953 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:26,954 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:26] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:26,960 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:26,962 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:26,962 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:26] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:28,692 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:28,693 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:28,694 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:28] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:28,698 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:28,700 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:28,700 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:28] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:31,951 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:31,953 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:31,954 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:31] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:33,693 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:33,694 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:33,694 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:33] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:36,951 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:36,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:36,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:36] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:36,954 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:36,954 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:36,954 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:36] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:38,694 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:38,695 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:38,695 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:38] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:38,696 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:38,696 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:38,697 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:38] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:41,951 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:41,953 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:41,953 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:41] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:43,695 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:43,696 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:43,696 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:43] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:46,951 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:46,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:46,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:46] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:46,954 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:46,954 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:46,954 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:46] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:48,697 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:48,697 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:48,698 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:48] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:48,702 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:48,704 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:48,705 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:48] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:51,952 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:51,953 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:51,957 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:51] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:53,697 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:53,698 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:53,699 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:53] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:56,951 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:56,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:56,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:56] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:56,957 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:56,960 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:56,961 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:56] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:24:58,697 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:58,698 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:24:58,698 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:58] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:24:58,699 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:24:58,700 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:24:58,700 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:24:58] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:01,949 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:01,951 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:01,951 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:01] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:03,700 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:03,701 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:03,702 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:03] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:08,710 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:08,711 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:25:08,711 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:08] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:25:08,713 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:08,713 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:08,713 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:08] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:11,951 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:11,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:25:11,953 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:25:11,958 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:11,960 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:11,961 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:13,716 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:13,716 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:25:13,716 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:13] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:25:13,718 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:13,719 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:13,719 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:13] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:18,716 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:18,716 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:18,716 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:18] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:23,716 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:23,717 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:25:23,717 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:23] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:25:23,718 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:23,719 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:23,719 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:23] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:28,720 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:28,721 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:25:28,721 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:28] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:25:28,722 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:28,724 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:28,724 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:28] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:33,721 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:33,722 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:33,722 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:33] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:38,759 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:38,760 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:25:38,761 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:38] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:25:38,764 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:38,765 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:38,766 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:38] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:43,762 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:43,764 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:43,764 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:43] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:48,763 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:48,763 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:25:48,763 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:48] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:25:48,766 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:48,767 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:48,767 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:48] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:53,764 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:53,764 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:53,764 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:53] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:25:58,762 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:58,762 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:25:58,763 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:58] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:25:58,765 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:25:58,767 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:25:58,767 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:25:58] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:03,766 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:03,766 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:26:03,766 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:03] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:26:03,767 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:03,768 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:03,769 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:03] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:08,764 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:08,764 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:08,764 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:08] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:11,955 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:11,955 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:26:11,955 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:26:11,958 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:11,958 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:11,958 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:13,767 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:13,768 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:26:13,768 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:13] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:26:13,769 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:13,769 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:13,769 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:13] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:18,768 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:18,770 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:18,771 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:18] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:23,767 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:23,767 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:26:23,768 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:23] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:26:23,769 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:23,769 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:23,770 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:23] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:28,770 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:28,770 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:26:28,771 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:28] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:26:28,774 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:28,775 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:28,776 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:28] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:33,772 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:33,772 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:33,773 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:33] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:38,769 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:38,770 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:26:38,770 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:38] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:26:38,771 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:38,772 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:38,772 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:38] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:43,827 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:43,827 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:26:43,827 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:43] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:26:43,828 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:43,828 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:43,829 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:43] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:48,825 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:48,825 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:48,826 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:48] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:53,828 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:53,829 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:26:53,829 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:53] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:26:53,831 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:53,832 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:53,833 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:53] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:26:58,829 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:26:58,830 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:26:58,831 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:26:58] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:03,827 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:03,828 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:27:03,828 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:03] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:27:03,830 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:03,830 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:03,830 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:03] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:08,829 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:08,830 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:08,830 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:08] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:11,969 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:11,969 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:27:11,970 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:27:11,975 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:11,976 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:11,976 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:13,830 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:13,830 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:27:13,831 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:13] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:27:13,835 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:13,836 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:13,836 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:13] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:18,832 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:18,833 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:18,833 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:18] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:23,833 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:23,834 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:27:23,834 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:23] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:27:23,835 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:23,836 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:23,836 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:23] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:28,835 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:28,836 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:28,836 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:28] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:33,835 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:33,836 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:27:33,837 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:33] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:27:33,840 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:33,842 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:33,842 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:33] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:38,836 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:38,838 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:38,838 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:38] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:43,890 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:43,890 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:27:43,891 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:43] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:27:43,895 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:43,896 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:43,897 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:43] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:48,890 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:48,891 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:48,892 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:48] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:53,891 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:53,892 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:27:53,893 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:53] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:27:53,897 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:53,898 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:53,899 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:53] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:27:58,892 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:27:58,894 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:27:58,894 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:27:58] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:03,893 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:03,894 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:28:03,894 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:03] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:28:03,895 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:03,896 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:03,896 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:03] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:08,895 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:08,897 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:08,897 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:08] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:11,967 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:11,967 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:28:11,968 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:28:11,972 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:11,973 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:11,974 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:13,896 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:13,896 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:28:13,896 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:13] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:28:13,898 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:13,900 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:13,901 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:13] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:18,894 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:18,894 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:18,895 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:18] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:23,916 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:23,916 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:28:23,918 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:23] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:28:23,921 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:23,923 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:23,923 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:23] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:28,920 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:28,920 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:28,920 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:28] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:33,924 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:33,925 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:28:33,925 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:33] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:28:33,927 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:33,928 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:33,929 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:33] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:38,922 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:38,922 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:38,922 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:38] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:43,926 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:43,926 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:28:43,927 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:43] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:28:43,928 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:43,928 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:43,928 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:43] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:48,927 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:48,927 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:48,927 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:48] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:53,928 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:53,928 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:28:53,928 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:53] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:28:53,930 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:53,931 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:53,932 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:53] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:28:58,967 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:58,968 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:28:58,968 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:58] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:28:58,971 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:28:58,972 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:28:58,972 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:28:58] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:03,968 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:03,970 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:03,970 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:03] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:08,969 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:08,969 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:29:08,970 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:08] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:29:08,974 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:08,975 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:08,975 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:08] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:11,958 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:11,958 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:29:11,958 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:29:11,960 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:11,961 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:11,961 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:13,970 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:13,971 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:13,971 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:13] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:18,971 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:18,972 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:29:18,972 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:18] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:29:18,974 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:18,975 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:18,976 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:18] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:23,976 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:23,976 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:29:23,977 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:23] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:29:23,980 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:23,981 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:23,981 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:23] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:28,978 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:28,979 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:28,979 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:28] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:33,979 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:33,980 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:29:33,980 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:33] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:29:33,981 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:33,981 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:33,981 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:33] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:38,980 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:38,981 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:38,981 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:38] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:43,981 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:43,982 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:29:43,982 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:43] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:29:43,983 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:43,983 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:43,984 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:43] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:48,982 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:48,984 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:48,985 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:48] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:53,984 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:53,984 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:29:53,985 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:53] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:29:53,986 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:53,986 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:53,986 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:53] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:29:58,985 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:29:58,985 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:29:58,986 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:29:58] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:03,986 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:03,986 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:30:03,986 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:03] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:30:03,988 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:03,990 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:03,990 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:03] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:09,037 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:09,037 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:30:09,038 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:09] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:30:09,042 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:09,043 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:09,043 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:09] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:11,958 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:11,958 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:30:11,959 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:30:11,961 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:11,962 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:11,962 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:14,038 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:14,040 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:14,040 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:14] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:19,039 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:19,040 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:30:19,040 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:19] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:30:19,042 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:19,043 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:19,044 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:19] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:24,040 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:24,041 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:24,041 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:24] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:29,042 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:29,042 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:30:29,043 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:29] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:30:29,047 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:29,048 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:29,049 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:29] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:34,043 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:34,045 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:34,046 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:34] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:39,044 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:39,044 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:30:39,044 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:39] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:30:39,045 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:39,046 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:39,046 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:39] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:44,045 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:44,046 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:44,046 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:44] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:49,046 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:49,046 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:30:49,047 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:49] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:30:49,049 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:49,050 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:49,051 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:49] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:54,047 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:54,048 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:54,048 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:54] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:30:59,049 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:59,049 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:30:59,050 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:59] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:30:59,051 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:30:59,051 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:30:59,051 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:30:59] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:04,049 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:04,051 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:04,054 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:04] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:09,049 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:09,050 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:31:09,050 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:09] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:31:09,054 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:09,055 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:09,055 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:09] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:11,968 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:11,969 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:31:11,969 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:31:11,973 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:11,974 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:11,974 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:14,051 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:14,052 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:14,052 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:14] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:19,111 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:19,111 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:31:19,111 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:19] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:31:19,113 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:19,114 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:19,115 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:19] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:24,112 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:24,113 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:24,113 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:24] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:29,113 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:29,114 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:31:29,114 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:29] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:31:29,115 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:29,116 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:29,116 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:29] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:34,114 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:34,114 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:34,115 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:34] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:39,115 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:39,115 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:31:39,115 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:39] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:31:39,117 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:39,119 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:39,119 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:39] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:44,116 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:44,116 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:44,117 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:44] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:49,117 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:49,117 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:31:49,118 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:49] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:31:49,120 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:49,121 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:49,122 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:49] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:54,118 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:54,119 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:54,119 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:54] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:31:59,135 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:59,136 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:31:59,136 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:59] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:31:59,138 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:31:59,139 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:31:59,139 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:31:59] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:04,135 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:04,136 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:04,137 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:04] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:09,137 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:09,138 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:32:09,138 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:09] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:32:09,139 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:09,139 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:09,139 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:09] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:11,957 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:11,958 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:32:11,958 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:32:11,960 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:11,960 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:11,960 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:14,138 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:14,139 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:14,140 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:14] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:19,139 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:19,139 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:32:19,140 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:19] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:32:19,141 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:19,141 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:19,141 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:19] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:24,139 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:24,141 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:24,141 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:24] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:29,187 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:29,188 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:32:29,189 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:29] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:32:29,192 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:29,194 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:29,194 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:29] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:34,188 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:34,189 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:34,190 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:34] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:39,189 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:39,190 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:32:39,191 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:39] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:32:39,195 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:39,197 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:39,197 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:39] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:44,190 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:44,191 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:44,192 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:44] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:49,192 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:49,193 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:32:49,194 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:49] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:32:49,199 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:49,201 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:49,202 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:49] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:54,191 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:54,193 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:54,193 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:54] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:32:59,193 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:59,194 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:32:59,195 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:59] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:32:59,199 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:32:59,201 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:32:59,201 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:32:59] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:04,206 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:04,207 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:04,209 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:04] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:04,213 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:04,215 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:04,216 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:04] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:09,211 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:09,213 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:09,214 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:09] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:11,969 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:11,970 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:11,971 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:11,977 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:11,978 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:11,978 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:14,213 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:14,213 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:14,215 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:14] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:14,219 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:14,220 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:14,221 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:14] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:19,213 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:19,214 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:19,215 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:19] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:24,215 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:24,215 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:24,216 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:24] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:24,220 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:24,222 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:24,222 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:24] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:29,215 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:29,216 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:29,217 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:29] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:34,251 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:34,252 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:34,253 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:34] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:34,257 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:34,258 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:34,259 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:34] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:39,252 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:39,253 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:39,254 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:39] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:44,254 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:44,254 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:44,256 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:44] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:44,260 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:44,262 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:44,262 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:44] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:49,254 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:49,255 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:49,256 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:49] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:49,972 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:49,973 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:49,973 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:49] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:49,976 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:49,976 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:49,977 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:49] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:51,951 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:51,953 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:51,954 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:51] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:54,252 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:54,253 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:54,253 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:54] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:54,255 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:54,256 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:54,256 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:54] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:56,952 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:56,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:33:56,953 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:56] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:33:56,955 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:56,956 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:56,956 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:56] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:33:59,256 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:33:59,257 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:33:59,258 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:33:59] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:01,951 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:01,953 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:01,953 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:01] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:04,257 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:04,258 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:04,259 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:04] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:04,263 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:04,266 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:04,266 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:04] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:06,952 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:06,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:06,953 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:06] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:06,959 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:06,960 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:06,961 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:06] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:09,258 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:09,259 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:09,260 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:09] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:11,952 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:11,952 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:11,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:14,259 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:14,260 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:14,261 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:14] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:14,265 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:14,266 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:14,267 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:14] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:16,952 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:16,953 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:16,953 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:16] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:16,955 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:16,955 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:16,955 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:16] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:19,257 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:19,257 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:19,258 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:19] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:21,949 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:21,949 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:21,949 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:21] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:24,260 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:24,261 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:24,261 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:24] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:24,262 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:24,263 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:24,263 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:24] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:26,951 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:26,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:26,953 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:26] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:26,958 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:26,961 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:26,962 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:26] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:29,262 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:29,262 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:29,262 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:29] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:31,951 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:31,952 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:31,956 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:31] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:34,262 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:34,263 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:34,263 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:34] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:34,265 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:34,267 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:34,268 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:34] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:36,951 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:36,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:36,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:36] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:36,961 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:36,962 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:36,962 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:36] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:39,263 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:39,264 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:39,265 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:39] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:41,951 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:41,952 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:41,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:41] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:44,320 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:44,321 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:44,322 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:44] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:44,325 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:44,327 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:44,327 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:44] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:46,951 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:46,952 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:46,952 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:46] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:46,954 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:46,954 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:46,955 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:46] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:49,320 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:49,321 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:49,321 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:49] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:54,322 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:54,322 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:34:54,323 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:54] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:34:54,327 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:54,328 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:54,329 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:54] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:34:59,323 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:34:59,325 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:34:59,326 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:34:59] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:04,323 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:04,324 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:35:04,328 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:04] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:35:04,332 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:04,333 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:04,334 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:04] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:09,325 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:09,326 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:09,329 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:09] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:11,957 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:11,958 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:35:11,958 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:35:11,961 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:11,962 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:11,962 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:14,327 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:14,327 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:35:14,328 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:14] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:35:14,332 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:14,334 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:14,335 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:14] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:19,324 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:19,324 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:19,324 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:19] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:24,328 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:24,329 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:35:24,330 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:24] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:35:24,334 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:24,335 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:24,336 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:24] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:29,329 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:29,330 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:29,331 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:29] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:34,330 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:34,330 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:35:34,332 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:34] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:35:34,336 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:34,338 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:34,339 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:34] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:39,330 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:39,331 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:39,331 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:39] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:44,331 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:44,332 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:35:44,332 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:44] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:35:44,334 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:44,334 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:44,334 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:44] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:49,333 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:49,333 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:49,333 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:49] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:54,334 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:54,334 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:35:54,339 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:54] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:35:54,343 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:54,344 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:54,345 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:54] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:35:59,395 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:59,395 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:35:59,396 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:59] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:35:59,397 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:35:59,397 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:35:59,397 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:35:59] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:04,396 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:04,396 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:04,397 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:04] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:09,400 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:09,401 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:36:09,402 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:09] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:36:09,406 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:09,407 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:09,407 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:09] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:11,957 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:11,958 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:36:11,958 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:36:11,961 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:11,962 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:11,962 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:14,400 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:14,402 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:14,403 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:14] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:19,402 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:19,403 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:36:19,403 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:19] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:36:19,407 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:19,409 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:19,409 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:19] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:24,403 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:24,405 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:24,405 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:24] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:29,403 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:29,404 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:36:29,405 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:29] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:36:29,408 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:29,408 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:29,408 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:29] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:34,405 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:34,406 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:34,409 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:34] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:39,422 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:39,422 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:36:39,426 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:39] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:36:39,430 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:39,432 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:39,432 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:39] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:44,425 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:44,426 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:44,427 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:44] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:49,426 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:49,426 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:36:49,427 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:49] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:36:49,428 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:49,428 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:49,428 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:49] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:54,427 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:54,427 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:54,428 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:54] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:36:59,427 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:59,428 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:36:59,429 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:59] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:36:59,433 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:36:59,435 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:36:59,436 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:36:59] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:04,428 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:04,429 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:04,429 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:04] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:09,470 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:09,470 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:37:09,471 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:09] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:37:09,473 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:09,474 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:09,474 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:09] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:11,958 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:11,958 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:37:11,958 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:11] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:37:11,960 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:11,961 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:11,961 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:11] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:14,471 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:14,472 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:14,473 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:14] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:19,470 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:19,470 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:37:19,471 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:19] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:37:19,474 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:19,474 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:19,474 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:19] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:24,472 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:24,474 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:24,474 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:24] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:29,474 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:29,474 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:37:29,475 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:29] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:37:29,479 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:29,481 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:29,482 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:29] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:34,474 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:34,475 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:34,476 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:34] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
+2025-07-23 11:37:39,476 [INFO] root: Request: OPTIONS http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:39,477 [INFO] request: 127.0.0.1 OPTIONS /api/v1/orders/active? -> 200 OK
+2025-07-23 11:37:39,478 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:39] "OPTIONS /api/v1/orders/active HTTP/1.1" 200 -
+2025-07-23 11:37:39,482 [INFO] root: Request: GET http://localhost:5000/api/v1/orders/active
+2025-07-23 11:37:39,484 [INFO] request: 127.0.0.1 GET /api/v1/orders/active? -> 401 UNAUTHORIZED
+2025-07-23 11:37:39,484 [INFO] werkzeug: 127.0.0.1 - - [23/Jul/2025 11:37:39] "[31m[1mGET /api/v1/orders/active HTTP/1.1[0m" 401 -
