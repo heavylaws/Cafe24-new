@@ -34,6 +34,13 @@ class PaymentMethod(enum.Enum):
     card = 'card'
     mixed = 'mixed'
 
+class PaymentStatus(enum.Enum):
+    pending = 'pending'
+    paid = 'paid'
+    refunded = 'refunded'
+    failed = 'failed'
+    partially_refunded = 'partially_refunded'
+
 # --- Models ---
 class User(db.Model):
     __tablename__ = 'users'
@@ -171,6 +178,7 @@ class Order(db.Model):
     courier_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     customer_number = db.Column(db.String(20), nullable=True)  # Can be anonymous
     status = db.Column(Enum(OrderStatus), nullable=False, default=OrderStatus.pending_payment)
+    payment_status = db.Column(Enum(PaymentStatus), nullable=False, default=PaymentStatus.pending)
     payment_method = db.Column(Enum(PaymentMethod), nullable=True)
     subtotal_usd = db.Column(db.Numeric(10, 2), nullable=False)
     subtotal_lbp_rounded = db.Column(db.Integer, nullable=False)
