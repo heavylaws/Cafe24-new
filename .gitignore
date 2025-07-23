@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.so
+*.pyc
+
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+pip-freeze.txt
+pipenv-freeze.txt
+pipenv.lock
+*.egg
+
+# Environment variables
+.env
+*.env
+
+# IDE specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sublime-workspace
+*.sublime-project
+
+# macOS specific files
+.DS_Store
+
+# Frontend build (if PWA is built in a subfolder and not served from static in backend repo)
+pwa_frontend/node_modules/
+pwa_frontend/build/
+pwa_frontend/dist/
+pwa_frontend/.DS_Store
+pwa_frontend/.env.local
+pwa_frontend/.env.*.local
+pwa_frontend/npm-debug.log*
+pwa_frontend/yarn-debug.log*
+pwa_frontend/yarn-error.log*
+
+# Coverage reports
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+```

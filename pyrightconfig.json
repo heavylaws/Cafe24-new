@@ -1,0 +1,6 @@
+{
+  // Relax overly-strict checks that flag dynamic SQLAlchemy models
+  "typeCheckingMode": "standard",
+  "reportArgumentType": "none",
+  "reportGeneralTypeIssues": "warning"
+} 
