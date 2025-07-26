@@ -1,10 +1,29 @@
 # pyright: reportGeneralTypeIssues=false
 from flask import Blueprint, request, jsonify, current_app
+from app import db
 from app.models import Ingredient, Recipe, MenuItem
 from app.utils.decorators import roles_required
 from flask_jwt_extended import jwt_required
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 import datetime
+
+# Helper function to safely convert to float with default
+def safe_float(value, default=0.0):
+    if value is None or value == '':
+        return default
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        return default
+
+# Helper function to safely convert to Decimal with default
+def safe_decimal(value, default='0.0'):
+    if value is None or value == '':
+        return Decimal(default)
+    try:
+        return Decimal(str(value))
+    except (InvalidOperation, TypeError):
+        return Decimal(default)
 
 ingredient_bp = Blueprint('ingredient_bp', __name__)
 
@@ -58,10 +77,10 @@ def create_ingredient(current_user):
         ingredient = Ingredient(  # type: ignore
             name=data['name'].strip(),  # type: ignore[arg-type]
             unit=data['unit'],  # type: ignore[arg-type]
-            current_stock=float(data.get('current_stock', 0.0)),  # type: ignore[arg-type]
-            min_stock_alert=float(data.get('min_stock_alert', 0.0)),  # type: ignore[arg-type]
-            cost_per_unit_usd=Decimal(str(data.get('cost_per_unit_usd', 0.0))),  # type: ignore[arg-type]
-            reorder_level=float(data.get('reorder_level', 0.0)),  # type: ignore[arg-type]
+            current_stock=safe_float(data.get('current_stock')),
+            min_stock_alert=safe_float(data.get('min_stock_alert')),
+            cost_per_unit_usd=safe_decimal(data.get('cost_per_unit_usd')),
+            reorder_level=safe_float(data.get('reorder_level')),
             is_active=data.get('is_active', True)  # type: ignore[arg-type]
         )
         
@@ -84,7 +103,7 @@ def create_ingredient(current_user):
         
     except Exception as e:
         db.session.rollback()
-        current_app.logger.error(f"Error creating ingredient: {e}")
+        current_app.logger.error(f"Error creating ingredient: {e}", exc_info=True)
         return jsonify({'message': 'Could not create ingredient.'}), 500
 
 @ingredient_bp.route('/ingredients/<int:ingredient_id>', methods=['PUT'])
@@ -116,16 +135,16 @@ def update_ingredient(current_user, ingredient_id):
             ingredient.unit = data['unit']
         
         if 'current_stock' in data:
-            ingredient.current_stock = float(data['current_stock'])
+            ingredient.current_stock = safe_float(data['current_stock'])
         
         if 'min_stock_alert' in data:
-            ingredient.min_stock_alert = float(data['min_stock_alert'])
+            ingredient.min_stock_alert = safe_float(data['min_stock_alert'])
 
         if 'cost_per_unit_usd' in data:
-            ingredient.cost_per_unit_usd = Decimal(str(data['cost_per_unit_usd']))
+            ingredient.cost_per_unit_usd = safe_decimal(data['cost_per_unit_usd'])
 
         if 'reorder_level' in data:
-            ingredient.reorder_level = float(data['reorder_level'])
+            ingredient.reorder_level = safe_float(data['reorder_level'])
         
         if 'is_active' in data:
             ingredient.is_active = data['is_active']

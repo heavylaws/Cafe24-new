@@ -70,6 +70,12 @@ def seed_db_command():
         db.session.commit()
     print("Database seeded with initial v0.1 data.")
 
+@app.cli.command("migrate-db")
+def migrate_db_command():
+    """Migrate database schema."""
+    from flask_migrate import Migrate, upgrade
+    migrate = Migrate(app, db)
+    upgrade()
 
 if __name__ == '__main__':
     # When running directly (python run.py), it will use the Werkzeug development server.
@@ -90,4 +96,3 @@ if __name__ == '__main__':
         app.run(host='0.0.0.0', port=5000)
     except Exception as e:
         logging.exception(f"Failed to start app: {e}")
-

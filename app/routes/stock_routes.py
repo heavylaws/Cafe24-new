@@ -1,23 +1,24 @@
 # pyright: reportGeneralTypeIssues=false
 from flask import Blueprint, request, jsonify, current_app
 from app.models import db, Ingredient, StockAdjustment, StockInvoice, StockInvoiceItem, Recipe, User
-from app.utils.decorators import token_required, roles_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from app.utils.decorators import roles_required
 import datetime
 
 stock_bp = Blueprint('stock_bp', __name__)
 
 @stock_bp.route('/adjust', methods=['POST'])
-@token_required
+@jwt_required()
 @roles_required(['manager'])
-def adjust_stock(current_user):
+def adjust_stock():
     """Adjust stock for an ingredient with required reason."""
     try:
         data = request.get_json()
-        if not data or not all(k in data for k in ['ingredient_id', 'change_amount', 'reason']):
-            return jsonify({'message': 'ingredient_id, change_amount, and reason are required'}), 400
+        if not data or not all(k in data for k in ['ingredient_id', 'quantity_change', 'reason']):
+            return jsonify({'message': 'ingredient_id, quantity_change, and reason are required'}), 400
         
         ingredient = Ingredient.query.get_or_404(data['ingredient_id'])
-        change_amount = float(data['change_amount'])
+        change_amount = float(data['quantity_change'])
         reason = data['reason'].strip()
         
         if not reason:
@@ -28,12 +29,15 @@ def adjust_stock(current_user):
         if new_stock < 0:
             return jsonify({'message': 'Adjustment would result in negative stock'}), 400
         
+        # Get current user ID from JWT
+        current_user_id = get_jwt_identity()
+        
         # Create adjustment record
-        adjustment = StockAdjustment(  # type: ignore[arg-type]
-            ingredient_id=ingredient.id,  # type: ignore[arg-type]
-            change_amount=change_amount,  # type: ignore[arg-type]
-            reason=reason,  # type: ignore[arg-type]
-            user_id=current_user.id  # type: ignore[arg-type]
+        adjustment = StockAdjustment(
+            ingredient_id=ingredient.id,
+            change_amount=change_amount,
+            reason=reason,
+            user_id=current_user_id
         )
         
         # Update ingredient stock
@@ -48,77 +52,68 @@ def adjust_stock(current_user):
             'ingredient': {
                 'id': ingredient.id,
                 'name': ingredient.name,
-                'previous_stock': ingredient.current_stock - change_amount,
-                'change_amount': change_amount,
-                'new_stock': ingredient.current_stock,
-                'unit': ingredient.unit
-            },
-            'adjustment_id': adjustment.id
+                'current_stock': ingredient.current_stock
+            }
         }), 200
         
     except Exception as e:
         db.session.rollback()
-        current_app.logger.error(f"Error adjusting stock: {e}")
-        return jsonify({'message': 'Could not adjust stock.'}), 500
+        current_app.logger.error(f"Error adjusting stock: {str(e)}")
+        return jsonify({'message': 'Could not adjust stock'}), 500
 
 @stock_bp.route('/adjustments', methods=['GET'])
-@token_required
+@jwt_required()
 @roles_required(['manager'])
-def get_stock_adjustments(current_user):
-    """Get all stock adjustments with optional filtering."""
+def get_stock_adjustments():
+    """Get all stock adjustments with ingredient and user details."""
     try:
-        # Optional filters
-        ingredient_id = request.args.get('ingredient_id', type=int)
-        days = request.args.get('days', type=int, default=30)
-        
-        query = db.session.query(StockAdjustment, Ingredient, User).join(
+        # Get all adjustments with related data
+        adjustments = db.session.query(
+            StockAdjustment,
+            Ingredient.name.label('ingredient_name'),
+            Ingredient.unit.label('ingredient_unit'),
+            User.full_name.label('user_name')
+        ).join(
             Ingredient, StockAdjustment.ingredient_id == Ingredient.id
         ).join(
             User, StockAdjustment.user_id == User.id
-        )
+        ).order_by(
+            StockAdjustment.created_at.desc()
+        ).all()
         
-        if ingredient_id:
-            query = query.filter(StockAdjustment.ingredient_id == ingredient_id)
-        
-        # Filter by date range
-        cutoff_date = datetime.datetime.utcnow() - datetime.timedelta(days=days)
-        query = query.filter(StockAdjustment.created_at >= cutoff_date)
-        
-        adjustments = query.order_by(StockAdjustment.created_at.desc()).all()
-        
+        # Format the response
         result = []
-        for adjustment, ingredient, user in adjustments:
+        for adj, ing_name, ing_unit, user_name in adjustments:
             # Determine adjustment type based on reason
-            adjustment_type = 'manual'
-            if 'restock' in adjustment.reason.lower():
-                adjustment_type = 'restock'
-            elif 'waste' in adjustment.reason.lower() or 'loss' in adjustment.reason.lower():
-                adjustment_type = 'waste'
-            
+            adj_type = 'manual'
+            if 'restock' in adj.reason.lower():
+                adj_type = 'restock'
+            elif 'waste' in adj.reason.lower() or 'loss' in adj.reason.lower():
+                adj_type = 'waste'
+                
             result.append({
-                'id': adjustment.id,
-                'ingredient_id': ingredient.id,
-                'ingredient_name': ingredient.name,
-                'ingredient_unit': ingredient.unit,
-                'adjustment_type': adjustment_type,
-                'quantity_change': adjustment.change_amount,
-                'change_amount': adjustment.change_amount,
-                'reason': adjustment.reason,
-                'user_id': adjustment.user_id,
-                'user_name': user.username,
-                'created_at': adjustment.created_at.isoformat()
+                'id': adj.id,
+                'ingredient_id': adj.ingredient_id,
+                'ingredient_name': ing_name,
+                'ingredient_unit': ing_unit,
+                'quantity_change': adj.change_amount,
+                'adjustment_type': adj_type,
+                'reason': adj.reason,
+                'user_id': adj.user_id,
+                'user_name': user_name,
+                'created_at': adj.created_at.isoformat()
             })
-        
+            
         return jsonify(result), 200
         
     except Exception as e:
-        current_app.logger.error(f"Error fetching stock adjustments: {e}")
-        return jsonify({'message': 'Could not retrieve stock adjustments.'}), 500
+        current_app.logger.error(f"Error fetching stock adjustments: {str(e)}")
+        return jsonify({'message': 'Could not retrieve stock adjustments'}), 500
 
 @stock_bp.route('/invoice', methods=['POST'])
-@token_required
+@jwt_required()
 @roles_required(['manager'])
-def create_stock_invoice(current_user):
+def create_stock_invoice():
     """Create a new stock invoice for restocking."""
     try:
         data = request.get_json()
@@ -128,11 +123,14 @@ def create_stock_invoice(current_user):
         if not isinstance(data['items'], list) or not data['items']:
             return jsonify({'message': 'Items must be a non-empty list'}), 400
         
+        # Get current user ID from JWT
+        current_user_id = get_jwt_identity()
+        
         # Create invoice
-        invoice = StockInvoice(  # type: ignore[arg-type]
-            supplier=data.get('supplier', '').strip(),  # type: ignore[arg-type]
-            date=datetime.datetime.strptime(data.get('date', datetime.date.today().isoformat()), '%Y-%m-%d').date(),  # type: ignore[arg-type]
-            user_id=current_user.id  # type: ignore[arg-type]
+        invoice = StockInvoice(
+            supplier=data.get('supplier', '').strip(),
+            date=datetime.datetime.strptime(data.get('date', datetime.date.today().isoformat()), '%Y-%m-%d').date(),
+            user_id=current_user_id
         )
         
         db.session.add(invoice)
@@ -159,12 +157,12 @@ def create_stock_invoice(current_user):
             total_cost += total_price
             
             # Create invoice item
-            invoice_item = StockInvoiceItem(  # type: ignore[arg-type]
-                invoice_id=invoice.id,  # type: ignore[arg-type]
-                ingredient_id=ingredient.id,  # type: ignore[arg-type]
-                quantity=quantity,  # type: ignore[arg-type]
-                unit_price=unit_price,  # type: ignore[arg-type]
-                total_price=total_price  # type: ignore[arg-type]
+            invoice_item = StockInvoiceItem(
+                invoice_id=invoice.id,
+                ingredient_id=ingredient.id,
+                quantity=quantity,
+                unit_price=unit_price,
+                total_price=total_price
             )
             
             # Update ingredient stock
@@ -192,12 +190,15 @@ def create_stock_invoice(current_user):
         return jsonify({'message': 'Could not create stock invoice.'}), 500
 
 @stock_bp.route('/invoices', methods=['GET'])
-@token_required
+@jwt_required()
 @roles_required(['manager'])
-def get_stock_invoices(current_user):
+def get_stock_invoices():
     """Get all stock invoices with optional filtering."""
     try:
         days = request.args.get('days', type=int, default=30)
+        
+        # Get current user ID from JWT
+        current_user_id = get_jwt_identity()
         
         # Filter by date range
         cutoff_date = datetime.datetime.utcnow() - datetime.timedelta(days=days)
@@ -224,9 +225,9 @@ def get_stock_invoices(current_user):
         return jsonify({'message': 'Could not retrieve stock invoices.'}), 500
 
 @stock_bp.route('/invoice/<int:invoice_id>', methods=['GET'])
-@token_required
+@jwt_required()
 @roles_required(['manager'])
-def get_stock_invoice_details(current_user, invoice_id):
+def get_stock_invoice_details(invoice_id):
     """Get detailed information about a specific stock invoice."""
     try:
         invoice = StockInvoice.query.get_or_404(invoice_id)
@@ -260,9 +261,9 @@ def get_stock_invoice_details(current_user, invoice_id):
         return jsonify({'message': 'Could not retrieve stock invoice details.'}), 500
 
 @stock_bp.route('/decrement', methods=['POST'])
-@token_required
-@roles_required(['system'])  # Internal use only
-def decrement_stock_for_order(current_user):
+@jwt_required()
+@roles_required(['system'])
+def decrement_stock_for_order():
     """Decrement ingredient stock based on order items and recipes."""
     try:
         data = request.get_json()

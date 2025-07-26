@@ -36,6 +36,7 @@ class MenuItemOptionSchema(ma.SQLAlchemyAutoSchema):
 
 class MenuItemSchema(ma.SQLAlchemyAutoSchema):
     category_name = fields.String(attribute="category.name", dump_only=True)
+    category_id = fields.Int(required=False, allow_none=True)  # Make category_id optional for updates
     options = fields.Nested(MenuItemOptionSchema, many=True)
     price_lbp_rounded = fields.Int(dump_only=True)
     base_price_usd = fields.Decimal(places=2, as_string=False)  # Ensure it's a number
@@ -44,6 +45,12 @@ class MenuItemSchema(ma.SQLAlchemyAutoSchema):
         model = MenuItem
         load_instance = True
         include_relationships = True
+        # Explicitly list fields to control serialization/deserialization
+        fields = ('id', 'name', 'description', 'base_price_usd', 'category_id', 
+                 'is_active', 'image_url', 'created_at', 'updated_at', 
+                 'category_name', 'options', 'price_lbp_rounded')
+        # Allow partial updates
+        partial = True
 
 
 class OrderItemSchema(ma.SQLAlchemyAutoSchema):
@@ -86,7 +93,7 @@ class CreateMenuItemSchema(ma.Schema):
     base_price_usd = fields.Decimal(required=True, places=2)
     description = fields.String(allow_none=True)
     is_active = fields.Boolean(load_default=True)
-
+    image_url = fields.String(allow_none=True)  # Add this line to allow image_url
 
 # Instantiate schemas
 user_schema = UserSchema()

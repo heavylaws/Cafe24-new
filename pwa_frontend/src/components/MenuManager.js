@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import MenuItemOptionsManager from './MenuItemOptionsManager';
-import RecipeManager from './RecipeManager'; // Import RecipeManager
+import RecipeManager from './RecipeManager';
 import {
   Stepper, Step, StepLabel, Button, TextField, Select, MenuItem as MuiMenuItem,
   Checkbox, FormControlLabel, Box, Typography, Paper, CircularProgress,
-  Alert, Grid, Card, CardContent, CardActions, IconButton, Dialog, DialogTitle, DialogContent,
-  List, ListItem, ListItemText, Avatar, Chip, Divider, Switch, Stack
+  Alert, Grid, Card, CardContent, CardActions, IconButton, Stack, Switch, Chip
 } from '@mui/material';
-import { Add, Edit, Delete, RestaurantMenu, Fastfood, ArrowForward, ArrowBack, CheckCircle } from '@mui/icons-material';
+import { Add, Edit, Delete, CheckCircle, ArrowForward, ArrowBack } from '@mui/icons-material';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-const steps = ['Basic Info', 'Recipe', 'Options & Choices', 'Review & Save']; // Add "Recipe" step
+const steps = ['Basic Info', 'Recipe', 'Options & Choices', 'Review & Save'];
 
 // Helper function to process the flat category list from the API
 const flattenCategories = (categories = []) => {
@@ -29,31 +28,33 @@ function MenuManager() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [formData, setFormData] = useState({
-    name: '', description: '', base_price_usd: '', category_id: '', is_active: true, image_url: ''
+    name: '', 
+    description: '', 
+    base_price_usd: '', 
+    category_id: null, 
+    is_active: true, 
+    image_url: ''
   });
   const [editingId, setEditingId] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
   const [createdItemId, setCreatedItemId] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
 
-  const getAuthHeader = () => {
+  const getAuthHeader = useCallback(() => {
     const token = localStorage.getItem('token');
     console.log('Auth Token being sent:', token);
     return { Authorization: `Bearer ${token}` };
-  };
-
-  useEffect(() => {
-    fetchData();
   }, []);
 
-  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const sleep = useCallback(ms => new Promise(resolve => setTimeout(resolve, ms)), []);
 
-    const fetchData = async (retries = 3) => {
-      try {
-        setLoading(true);
-      // Wait a fraction of a second for token to be set after login redirect
+  const fetchData = useCallback(async (retries = 3) => {
+    try {
+      setLoading(true);
       await sleep(100); 
-      const res = await axios.get(`${API_BASE_URL}/api/v1/menu/active`, { headers: getAuthHeader() });
+      const res = await axios.get(`${API_BASE_URL}/api/v1/menu/active`, { 
+        headers: getAuthHeader() 
+      });
       
       const { menu_items, categories } = res.data;
 
@@ -62,22 +63,89 @@ function MenuManager() {
       const flatCategories = flattenCategories(categories);
       setCategories(flatCategories);
 
-      } catch (err) {
-        if (err.response?.status === 422 && retries > 0) {
-          console.log(`Fetch failed with 422, retrying... ${retries - 1} attempts left.`);
-          await sleep(500); // Wait a bit longer before retrying
-          return fetchData(retries - 1);
-        }
+    } catch (err) {
+      if (err.response?.status === 422 && retries > 0) {
+        console.log(`Fetch failed with 422, retrying... ${retries - 1} attempts left.`);
+        await sleep(500); // Wait a bit longer before retrying
+        return fetchData(retries - 1);
+      }
       setError('Failed to fetch menu data.');
       console.error(err); // Log the actual error for debugging
-      } finally {
-        setLoading(false);
-      }
-    };
+    } finally {
+      setLoading(false);
+    }
+  }, [getAuthHeader, sleep]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
+  };
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    
+    // Convert string numbers to proper types
+    const dataToSend = {
+      ...formData,
+      category_id: formData.category_id ? parseInt(formData.category_id, 10) : null,
+      base_price_usd: formData.base_price_usd ? parseFloat(formData.base_price_usd) : 0,
+      is_active: !!formData.is_active
+    };
+
+    // Client-side validation
+    if (!dataToSend.name || !dataToSend.name.trim()) {
+      setError('Menu item name is required');
+      return;
+    }
+
+    if (!dataToSend.category_id) {
+      setError('Please select a category');
+      return;
+    }
+
+    if (isNaN(dataToSend.base_price_usd) || dataToSend.base_price_usd < 0) {
+      setError('Please enter a valid price');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      const url = editingId 
+        ? `${API_BASE_URL}/api/v1/menu/items/${editingId}`
+        : `${API_BASE_URL}/api/v1/menu/items`;
+      
+      const method = editingId ? 'PUT' : 'POST';
+      
+      const response = await axios({
+        method,
+        url,
+        data: dataToSend,
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeader()
+        }
+      });
+
+      setSuccess(editingId ? 'Menu item updated successfully!' : 'Menu item created successfully!');
+      fetchData();
+      
+      if (!editingId) {
+        handleReset();
+      }
+    } catch (err) {
+      const errorMsg = err.response?.data?.message || 'Failed to save menu item';
+      setError(errorMsg);
+      console.error('Error saving menu item:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleNext = async () => {
@@ -96,8 +164,7 @@ function MenuManager() {
         setCreatedItemId(editingId || res.data.id);
         setSuccess('Basic info saved. Now define the recipe.');
         setActiveStep(1); // Move to Recipe step
-      setError('');
-    } catch (err) {
+      } catch (err) {
         setError(err.response?.data?.message || 'Failed to save menu item.');
       }
     } else {
@@ -108,7 +175,14 @@ function MenuManager() {
   const handleBack = () => setActiveStep((prev) => prev - 1);
 
   const handleReset = () => {
-    setFormData({ name: '', description: '', base_price_usd: '', category_id: '', is_active: true, image_url: '' });
+    setFormData({ 
+      name: '', 
+      description: '', 
+      base_price_usd: '', 
+      category_id: null, 
+      is_active: true, 
+      image_url: ''
+    });
     setEditingId(null);
     setCreatedItemId(null);
     setActiveStep(0);
@@ -123,7 +197,7 @@ function MenuManager() {
       name: item.name,
       description: item.description,
       base_price_usd: item.base_price_usd,
-      category_id: item.category_id,
+      category_id: item.category_id, 
       is_active: item.is_active,
       image_url: item.image_url || ''
     });
@@ -192,7 +266,15 @@ function MenuManager() {
               <Grid item xs={12} sm={3}><TextField label="Icon (Emoji)" name="image_url" value={formData.image_url} onChange={handleInputChange} fullWidth helperText="e.g., ☕" /></Grid>
               <Grid item xs={12}><TextField label="Description" name="description" value={formData.description} onChange={handleInputChange} fullWidth multiline rows={2} /></Grid>
               <Grid item xs={12} sm={6}>
-                <Select label="Category" name="category_id" value={formData.category_id} onChange={handleInputChange} required fullWidth displayEmpty>
+                <Select 
+                  label="Category" 
+                  name="category_id" 
+                  value={formData.category_id || ''} 
+                  onChange={handleInputChange} 
+                  required 
+                  fullWidth 
+                  displayEmpty
+                >
                   <MuiMenuItem value=""><em>Select a category</em></MuiMenuItem>
                   {categories.map(cat => (
                     <MuiMenuItem 

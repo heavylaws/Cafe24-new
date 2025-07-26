@@ -4,6 +4,7 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+from flask import current_app
 
 # Add the parent directory to the Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -14,6 +15,8 @@ from app.models import *
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
+from alembic import context
+
 config = context.config
 
 # Interpret the config file for Python logging.
@@ -29,9 +32,6 @@ def run_migrations_offline():
     and not an Engine, though an Engine is acceptable
     here as well.  By skipping the Engine creation
     we don't even need a DBAPI to be available.
-
-    Calls to context.execute() here emit the given string to the
-    script output.
     """
     url = config.get_main_option("sqlalchemy.url")
     context.configure(
@@ -50,20 +50,22 @@ def run_migrations_online():
     In this scenario we need to create an Engine
     and associate a connection with the context.
     """
-    # Get the database URL from the application config
+    # Create the Flask app
     app = create_app()
-    connectable = app.extensions['sqlalchemy'].db.engine
-
-    with connectable.connect() as connection:
-        context.configure(
-            connection=connection,
-            target_metadata=target_metadata,
-            compare_type=True,
-            compare_server_default=True,
-        )
-
-        with context.begin_transaction():
-            context.run_migrations()
+    
+    # Connect to the database using the app's configuration
+    with app.app_context():
+        connectable = db.engine
+        
+        with connectable.connect() as connection:
+            context.configure(
+                connection=connection,
+                target_metadata=target_metadata,
+                compare_type=True
+            )
+            
+            with context.begin_transaction():
+                context.run_migrations()
 
 if context.is_offline_mode():
     run_migrations_offline()

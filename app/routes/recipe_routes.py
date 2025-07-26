@@ -33,7 +33,8 @@ def get_recipe_for_menu_item(current_user, menu_item_id):
                 'is_sufficient': recipe.ingredient.current_stock >= recipe.amount
             })
         
-        return jsonify(result), 200
+        # Return only the ingredients as an array for frontend compatibility
+        return jsonify(result['ingredients']), 200
         
     except Exception as e:
         current_app.logger.error(f"Error fetching recipe for menu item {menu_item_id}: {e}")
@@ -47,18 +48,24 @@ def create_or_update_recipe(current_user, menu_item_id):
     try:
         menu_item = MenuItem.query.get_or_404(menu_item_id)
         data = request.get_json()
-        
-        if not data or 'ingredients' not in data:
+        current_app.logger.info(f"Received recipe payload: {data}")
+
+        # Accept both {ingredients: [...]} and raw array
+        if isinstance(data, list):
+            ingredients = data
+        elif isinstance(data, dict) and 'ingredients' in data and isinstance(data['ingredients'], list):
+            ingredients = data['ingredients']
+        else:
             return jsonify({'message': 'Ingredients list is required'}), 400
-        
-        if not isinstance(data['ingredients'], list):
-            return jsonify({'message': 'Ingredients must be a list'}), 400
+
+        if len(ingredients) == 0:
+            return jsonify({'message': 'Ingredients list is required'}), 400
         
         # Remove existing recipes for this menu item
         Recipe.query.filter_by(menu_item_id=menu_item_id).delete()
-        
+
         # Add new recipes
-        for ingredient_data in data['ingredients']:
+        for ingredient_data in ingredients:
             if not isinstance(ingredient_data, dict) or 'ingredient_id' not in ingredient_data or 'amount' not in ingredient_data:
                 return jsonify({'message': 'Each ingredient must have ingredient_id and amount'}), 400
             
@@ -84,6 +91,10 @@ def create_or_update_recipe(current_user, menu_item_id):
         db.session.rollback()
         current_app.logger.error(f"Error updating recipe for menu item {menu_item_id}: {e}")
         return jsonify({'message': 'Could not update recipe.'}), 500
+
+@recipe_bp.route('/<int:menu_item_id>/recipe', methods=['OPTIONS'])
+def recipe_options(menu_item_id):
+    return ('', 204, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type,Authorization'})
 
 @recipe_bp.route('/<int:menu_item_id>/recipe', methods=['DELETE'])
 @token_required
