@@ -426,7 +426,6 @@ def add_menu_item_option(item_id):
 
 
 # --- SHIM: Register /api/v1/menu-items/<id>/options at top-level for frontend compatibility ---
-from flask import current_app
 
 
 def register_menu_item_options_shim(app):
