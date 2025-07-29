@@ -1,48 +1,65 @@
+"""Database models for the Cafe24 POS system.
+
+This module contains all SQLAlchemy models and enums used throughout the application.
+"""
 import datetime
+import enum
 from typing import Optional
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import Enum, Index, MetaData
-import enum
 from app import db
 
 
 # --- Enums ---
 class UserRole(enum.Enum):
-    courier = 'courier'
-    cashier = 'cashier'
-    barista = 'barista'
-    manager = 'manager'
+    """User role enumeration."""
+    COURIER = 'courier'
+    CASHIER = 'cashier'
+    BARISTA = 'barista'
+    MANAGER = 'manager'
+
 
 class DiscountType(enum.Enum):
-    percentage = 'percentage'
-    fixed_amount = 'fixed_amount'
+    """Discount type enumeration."""
+    PERCENTAGE = 'percentage'
+    FIXED_AMOUNT = 'fixed_amount'
+
 
 class AppliesTo(enum.Enum):
-    order = 'order'
-    item = 'item'
+    """Applies to enumeration for discounts."""
+    ORDER = 'order'
+    ITEM = 'item'
+
 
 class OrderStatus(enum.Enum):
-    pending_payment = 'pending_payment'
-    paid_waiting_preparation = 'paid_waiting_preparation'
-    preparing = 'preparing'
-    ready_for_pickup = 'ready_for_pickup'
-    completed = 'completed'
-    cancelled = 'cancelled'
+    """Order status enumeration."""
+    PENDING_PAYMENT = 'pending_payment'
+    PAID_WAITING_PREPARATION = 'paid_waiting_preparation'
+    PREPARING = 'preparing'
+    READY_FOR_PICKUP = 'ready_for_pickup'
+    COMPLETED = 'completed'
+    CANCELLED = 'cancelled'
+
 
 class PaymentMethod(enum.Enum):
-    cash = 'cash'
-    card = 'card'
-    mixed = 'mixed'
+    """Payment method enumeration."""
+    CASH = 'cash'
+    CARD = 'card'
+    MIXED = 'mixed'
+
 
 class PaymentStatus(enum.Enum):
-    pending = 'pending'
-    paid = 'paid'
-    refunded = 'refunded'
-    failed = 'failed'
-    partially_refunded = 'partially_refunded'
+    """Payment status enumeration."""
+    PENDING = 'pending'
+    PAID = 'paid'
+    REFUNDED = 'refunded'
+    FAILED = 'failed'
+    PARTIALLY_REFUNDED = 'partially_refunded'
+
 
 # --- Models ---
 class User(db.Model):
+    """User model for system authentication and authorization."""
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False, index=True)
@@ -54,53 +71,69 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
     def set_password(self, password):
+        """Set the user's password hash."""
         self.hashed_password = generate_password_hash(password)
 
     def check_password(self, password):
+        """Check if the provided password matches the user's password."""
         return check_password_hash(self.hashed_password, password)
 
     def __repr__(self):
         return f"<User {self.username} ({self.role.value})>"
 
 class Category(db.Model):
+    """Category model for organizing menu items."""
     __tablename__ = 'categories'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     parent_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=True)
     sort_order = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
 
     menu_items = db.relationship('MenuItem', backref='category', lazy=True)
-    children = db.relationship('Category', backref=db.backref('parent', remote_side=[id]), lazy='dynamic')
+    children = db.relationship('Category',
+                             backref=db.backref('parent', remote_side=[id]),
+                             lazy='dynamic')
 
-    __table_args__ = (db.UniqueConstraint('parent_id', 'name', name='_parent_category_name_uc'),)
+    __table_args__ = (db.UniqueConstraint('parent_id', 'name',
+                                        name='_parent_category_name_uc'),)
 
-    def __init__(self, name: str, sort_order: int = 0, parent_id: Optional[int] = None, **kwargs):
+    def __init__(self, name: str, sort_order: int = 0,
+                 parent_id: Optional[int] = None, **kwargs):
+        """Initialize a new Category."""
         super().__init__(**kwargs)
         self.name = name
         self.sort_order = sort_order
         self.parent_id = parent_id
 
     def __repr__(self):
+        """Return string representation of Category."""
         return f"<Category {self.parent.name if self.parent else ''} / {self.name}>"
 
+
 class MenuItem(db.Model):
+    """Menu item model representing items available for order."""
     __tablename__ = 'menuitems'
     id = db.Column(db.Integer, primary_key=True)
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False, index=True)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'),
+                          nullable=False, index=True)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
     base_price_usd = db.Column(db.Numeric(10, 2), nullable=False, default=0.00)
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     image_url = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
 
-    options = db.relationship('MenuItemOption', backref='menu_item', lazy='select', cascade="all, delete-orphan")
+    options = db.relationship('MenuItemOption', backref='menu_item', lazy='select',
+                            cascade="all, delete-orphan")
     order_items = db.relationship('OrderItem', backref='menu_item', lazy=True)
 
-    __table_args__ = (db.UniqueConstraint('category_id', 'name', name='_category_item_name_uc'),)
+    __table_args__ = (db.UniqueConstraint('category_id', 'name',
+                                        name='_category_item_name_uc'),)
 
     def __repr__(self):
         return f"<MenuItem {self.name}>"

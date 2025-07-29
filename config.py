@@ -1,3 +1,7 @@
+"""Configuration settings for the Flask application.
+
+This module contains configuration classes for different environments.
+"""
 import os
 from dotenv import load_dotenv
 
@@ -10,7 +14,8 @@ class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", None)
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", None)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", f"sqlite:///{os.path.join(basedir, 'pos_system_v01.db')}")
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL",
+                                      f"sqlite:///{os.path.join(basedir, 'pos_system_v01.db')}")
 
     USD_TO_LBP_EXCHANGE_RATE = float(os.getenv("USD_TO_LBP_EXCHANGE_RATE", "90000.0"))
     PRIMARY_CURRENCY_CODE = os.getenv("PRIMARY_CURRENCY_CODE", "LBP")
@@ -19,6 +24,7 @@ class Config:
 
     @staticmethod
     def warn_if_default_keys():
+        """Warn if default keys are being used."""
         if not os.getenv("SECRET_KEY"):
             print("[WARNING] Using default SECRET_KEY. Set it in .env for production.")
         if not os.getenv("JWT_SECRET_KEY"):
@@ -26,16 +32,20 @@ class Config:
 
 
 class DevelopmentConfig(Config):
+    """Development configuration."""
     DEBUG = True
     SQLALCHEMY_ECHO = True
 
 
 class TestingConfig(Config):
+    """Testing configuration."""
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.getenv("TEST_DATABASE_URL", f"sqlite:///{os.path.join(basedir, 'pos_system_v01_test.db')}")
+    SQLALCHEMY_DATABASE_URI = os.getenv("TEST_DATABASE_URL",
+                                       f"sqlite:///{os.path.join(basedir, 'pos_system_v01_test.db')}")
 
 
 class ProductionConfig(Config):
+    """Production configuration."""
     DEBUG = False
     SQLALCHEMY_ECHO = False
 
@@ -49,6 +59,7 @@ config_by_name = {
 
 
 def get_config_name():
+    """Get the configuration name from environment."""
     return os.getenv("FLASK_CONFIG", "default")
 
 
