@@ -1,23 +1,13 @@
-"""
-Cafe24 POS System - Application Entry Point
-
-This module serves as the main entry point for the Cafe24 POS system.
-It creates the Flask application, provides CLI commands for database operations,
-and starts the development server.
-"""
-
-import logging
 import os
+import logging
 
 from flask import request
-
-from app import create_app, db
+from app import create_app, db, socketio
 
 # Set up basic logging to console
 logging.basicConfig(level=logging.INFO)
 
 app = create_app()
-
 
 @app.cli.command("create-db")
 def create_db_command():
@@ -26,67 +16,29 @@ def create_db_command():
         db.create_all()
     print("Database tables created.")
 
-
 @app.cli.command("seed-db")
 def seed_db_command():
     """Seed the database with initial data for v0.1."""
     with app.app_context():
         from werkzeug.security import generate_password_hash
-
         from app.models import SystemSettings, User
 
         # Seed System Settings
-        if not SystemSettings.query.filter_by(
-            setting_key="usd_to_lbp_exchange_rate"
-        ).first():
-            db.session.add(
-                SystemSettings(
-                    setting_key="usd_to_lbp_exchange_rate", setting_value="90000"
-                )
-            )
-        if not SystemSettings.query.filter_by(
-            setting_key="primary_currency_code"
-        ).first():
-            db.session.add(
-                SystemSettings(setting_key="primary_currency_code", setting_value="LBP")
-            )
-        if not SystemSettings.query.filter_by(
-            setting_key="secondary_currency_code"
-        ).first():
-            db.session.add(
-                SystemSettings(
-                    setting_key="secondary_currency_code", setting_value="USD"
-                )
-            )
+        if not SystemSettings.query.filter_by(setting_key="usd_to_lbp_exchange_rate").first():
+            db.session.add(SystemSettings(setting_key="usd_to_lbp_exchange_rate", setting_value="90000"))
+        if not SystemSettings.query.filter_by(setting_key="primary_currency_code").first():
+            db.session.add(SystemSettings(setting_key="primary_currency_code", setting_value="LBP"))
+        if not SystemSettings.query.filter_by(setting_key="secondary_currency_code").first():
+            db.session.add(SystemSettings(setting_key="secondary_currency_code", setting_value="USD"))
 
         print("System settings seeded.")
 
         # Seed Users
         users_to_seed = [
-            {
-                "username": "manager1",
-                "password": "password123",
-                "full_name": "Manager One",
-                "role": "manager",
-            },
-            {
-                "username": "courier1",
-                "password": "password123",
-                "full_name": "Courier One",
-                "role": "courier",
-            },
-            {
-                "username": "barista1",
-                "password": "password123",
-                "full_name": "Barista One",
-                "role": "barista",
-            },
-            {
-                "username": "cashier1",
-                "password": "password123",
-                "full_name": "Cashier One",
-                "role": "cashier",
-            },
+            {"username": "manager1", "password": "password123", "full_name": "Manager One", "role": "manager"},
+            {"username": "courier1", "password": "password123", "full_name": "Courier One", "role": "courier"},
+            {"username": "barista1", "password": "password123", "full_name": "Barista One", "role": "barista"},
+            {"username": "cashier1", "password": "password123", "full_name": "Cashier One", "role": "cashier"},
         ]
         for user_data in users_to_seed:
             if not User.query.filter_by(username=user_data["username"]).first():
@@ -104,15 +56,12 @@ def seed_db_command():
         db.session.commit()
     print("Database seeded with initial v0.1 data.")
 
-
 @app.cli.command("migrate-db")
 def migrate_db_command():
     """Migrate database schema."""
     from flask_migrate import Migrate, upgrade
-
     migrate = Migrate(app, db)
     upgrade()
-
 
 if __name__ == "__main__":
     # When running directly (python run.py), it will use the Werkzeug development server.
@@ -131,6 +80,7 @@ if __name__ == "__main__":
         return {"message": "Internal server error"}, 500
 
     try:
-        app.run(host="0.0.0.0", port=5000)
+        # Use SocketIO to run the app for WebSocket support
+        socketio.run(app, host='0.0.0.0', port=5000, debug=True)
     except Exception as e:
         logging.exception("Failed to start app: %s", e)
