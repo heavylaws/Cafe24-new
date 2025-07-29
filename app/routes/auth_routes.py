@@ -1,7 +1,10 @@
-from flask import Blueprint, request, jsonify, current_app
-from app.models import db, User
+"""Authentication routes for the Cafe24 POS system."""
+
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import create_access_token
+
+from app.models import User
 from app.schemas import UserSchema
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 auth_bp = Blueprint('auth_bp', __name__)
 
@@ -9,6 +12,7 @@ user_schema = UserSchema()
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
+    """Authenticate user and return access token."""
     data = request.get_json()
     if not data or not data.get('username') or not data.get('password'):
         return jsonify({'message': 'Username and password required'}), 400
@@ -24,11 +28,11 @@ def login():
 
         # The user's ID is now the identity (convert to string for JWT)
         access_token = create_access_token(identity=str(user.id))
-        
+
         # We still send user details to the frontend for UI setup
         return jsonify(
-            access_token=access_token, 
+            access_token=access_token,
             user={'role': user.role.value, 'username': user.username}
         ), 200
-    
+
     return jsonify({"message": "Invalid credentials"}), 401

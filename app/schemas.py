@@ -1,28 +1,46 @@
-from flask_marshmallow import Marshmallow
+"""
+Marshmallow schemas for API serialization and deserialization.
+
+This module defines schemas for all models used in the Cafe24 POS system,
+providing automatic serialization/deserialization for API endpoints.
+"""
+
 from marshmallow import fields
-from app.models import User, Category, MenuItem, MenuItemOption, MenuItemOptionChoice, Order, OrderItem
+from flask_marshmallow import Marshmallow
+
+from app.models import (
+    Category, MenuItem, MenuItemOption, MenuItemOptionChoice,
+    Order, OrderItem, User
+)
 
 ma = Marshmallow()
 
 def configure_ma(app):
+    """Initialize Marshmallow with the Flask app."""
     ma.init_app(app)
 
+
 class UserSchema(ma.SQLAlchemyAutoSchema):
+    """Schema for User model serialization."""
     class Meta:
         model = User
         load_instance = True
         exclude = ("hashed_password",)
 
+
 class CategorySchema(ma.SQLAlchemyAutoSchema):
+    """Schema for Category model serialization."""
     class Meta:
         model = Category
         load_instance = True
         include_relationships = True
 
+
 class MenuItemOptionChoiceSchema(ma.SQLAlchemyAutoSchema):
+    """Schema for MenuItemOptionChoice model serialization."""
     price_usd = fields.Decimal(places=2, as_string=False)  # Ensure it's a number
     price_lbp_rounded = fields.Int(dump_only=True)
-    
+
     class Meta:
         model = MenuItemOptionChoice
         load_instance = True
