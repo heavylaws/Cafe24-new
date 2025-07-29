@@ -1,14 +1,18 @@
+"""Ingredient management routes for the Cafe24 POS system."""
 # pyright: reportGeneralTypeIssues=false
-from flask import Blueprint, request, jsonify, current_app
-from app import db
-from app.models import Ingredient, Recipe, MenuItem
-from app.utils.decorators import roles_required
-from flask_jwt_extended import jwt_required
-from decimal import Decimal, InvalidOperation
-import datetime
 
-# Helper function to safely convert to float with default
+import datetime
+from decimal import Decimal, InvalidOperation
+
+from flask import Blueprint, current_app, jsonify, request
+from flask_jwt_extended import jwt_required
+
+from app import db
+from app.models import Ingredient, MenuItem, Recipe
+from app.utils.decorators import roles_required
+
 def safe_float(value, default=0.0):
+    """Safely convert value to float with fallback default."""
     if value is None or value == '':
         return default
     try:
@@ -16,8 +20,9 @@ def safe_float(value, default=0.0):
     except (ValueError, TypeError):
         return default
 
-# Helper function to safely convert to Decimal with default
+
 def safe_decimal(value, default='0.0'):
+    """Safely convert value to Decimal with fallback default."""
     if value is None or value == '':
         return Decimal(default)
     try:

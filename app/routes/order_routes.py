@@ -1,10 +1,20 @@
-from flask import Blueprint, request, jsonify, current_app
-from app.models import db, Order, OrderItem, MenuItem, MenuItemOptionChoice, User, SystemSettings, Recipe, Ingredient, StockAdjustment
-from app.utils.decorators import roles_required
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from app.utils.helpers import calculate_lbp_price, get_current_exchange_rate, generate_order_number, generate_customer_number
-from decimal import Decimal
+"""Order management routes for the Cafe24 POS system."""
+
 import datetime
+from decimal import Decimal
+
+from flask import Blueprint, current_app, jsonify, request
+from flask_jwt_extended import get_jwt_identity, jwt_required
+
+from app.models import (
+    Ingredient, MenuItem, MenuItemOptionChoice, Order, OrderItem,
+    Recipe, StockAdjustment, SystemSettings, User, db
+)
+from app.utils.decorators import roles_required
+from app.utils.helpers import (
+    calculate_lbp_price, generate_customer_number, generate_order_number,
+    get_current_exchange_rate
+)
 
 order_bp = Blueprint('order_bp', __name__)
 

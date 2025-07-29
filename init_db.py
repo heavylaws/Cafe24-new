@@ -1,15 +1,29 @@
-import os
-from app import create_app, db
-from app.models import User, Category, MenuItem, MenuItemOption, MenuItemOptionChoice, Ingredient, Recipe, Discount, Order, OrderItem, SystemSettings, StockAdjustment, StockInvoice, StockInvoiceItem, OrderDiscount, OrderItemDiscount, UserRole, DiscountType, AppliesTo, OrderStatus, PaymentMethod
+"""
+Database initialization script for the Cafe24 POS system.
+
+This script creates the database tables and sets up initial data including
+default users, system settings, and sample menu items.
+"""
+
 import datetime
+import os
+
+from app import create_app, db
+from app.models import (
+    AppliesTo, Category, Discount, DiscountType, Ingredient, MenuItem,
+    MenuItemOption, MenuItemOptionChoice, Order, OrderDiscount, OrderItem,
+    OrderItemDiscount, OrderStatus, PaymentMethod, Recipe, StockAdjustment,
+    StockInvoice, StockInvoiceItem, SystemSettings, User, UserRole
+)
 
 def init_database():
+    """Initialize database with tables and default data."""
     app = create_app()
     with app.app_context():
         # Drop all tables and recreate them
         db.drop_all()
         db.create_all()
-        
+
         print("Database tables created successfully!")
         
         # Create a default manager user
