@@ -225,7 +225,7 @@ def get_all_recipes(current_user):
             db.session.query(Recipe, MenuItem, Ingredient)
             .join(MenuItem, Recipe.menu_item_id == MenuItem.id)
             .join(Ingredient, Recipe.ingredient_id == Ingredient.id)
-            .filter(MenuItem.is_active == True, Ingredient.is_active == True)
+            .filter(MenuItem.is_active.is_(True), Ingredient.is_active.is_(True))
             .order_by(MenuItem.name.asc(), Ingredient.name.asc())
             .all()
         )

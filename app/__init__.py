@@ -55,7 +55,7 @@ def create_app(config_name="development"):
     from app.routes.stock_routes import stock_bp
     from app.routes.realtime_routes import realtime_bp
     from app.routes.menu_routes import register_menu_item_options_shim
-    
+
     app.register_blueprint(auth_bp, url_prefix='/api/v1/auth')
     app.register_blueprint(menu_bp, url_prefix='/api/v1/menu')
     app.register_blueprint(order_bp, url_prefix='/api/v1/orders')
@@ -66,7 +66,7 @@ def create_app(config_name="development"):
     app.register_blueprint(category_bp, url_prefix='/api/v1')
     app.register_blueprint(recipe_bp, url_prefix='/api/v1/menu')
     app.register_blueprint(realtime_bp, url_prefix='/api/v1/realtime')
-    
+
     # System settings endpoint
     from app.routes.menu_routes import get_system_settings, update_system_settings
 

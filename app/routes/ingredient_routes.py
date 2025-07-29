@@ -243,7 +243,7 @@ def get_low_stock_ingredients(current_user):
     """Get ingredients with low stock."""
     try:
         ingredients = (
-            Ingredient.query.filter(Ingredient.is_active == True)
+            Ingredient.query.filter(Ingredient.is_active.is_(True))
             .order_by(Ingredient.name.asc())
             .all()
         )

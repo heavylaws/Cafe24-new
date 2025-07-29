@@ -90,7 +90,7 @@ def check_and_deduct_stock(order_items_data, user_id):
         adjustment = StockAdjustment(
             ingredient_id=ingredient_id,
             change_amount=-amount_needed,  # Negative for deduction
-            reason=f"Order placement - automatic deduction",
+            reason="Order placement - automatic deduction",
             user_id=user_id,
         )
         db.session.add(adjustment)
