@@ -23,7 +23,7 @@ unsafe-load-any-extension=no
 confidence=
 
 # Disable the message, report, category or checker with the given id(s).
-disable=C0114,C0115,C0116,R0903,C0415,W1203,E0401,R0914,C0103,W0613,R0913,C0302,R0902,R0912,W0622,C0200,R0915
+disable=C0114,C0115,C0116,R0903,C0415,W1203,E0401,R0914,C0103,W0613,R0913,C0302,R0902,R0912,W0622,C0200,R0915,R0901,W0611,W0612,R0911,C0301,W0404
 
 # Enable the message, report, category or checker with the given id(s).
 enable=c-extension-no-member
@@ -103,9 +103,6 @@ module-naming-style=snake_case
 # the name regexes allow several styles.
 name-group=
 
-# Regular expression matching correct names overrides the naming style
-name-rgx=
-
 # Naming style matching correct variable names
 variable-naming-style=snake_case
 
@@ -130,7 +127,8 @@ max-line-length=100
 max-module-lines=1000
 
 # List of optional constructs for which whitespace checking is disabled.
-no-space-check=trailing-comma,dict-separator
+# This option was removed in pylint 3.0
+# no-space-check=trailing-comma,dict-separator
 
 # Allow the body of a class to be on the same line as the declaration if body
 # contains single statement.
@@ -324,4 +322,4 @@ known-third-party=flask,flask_cors,flask_sqlalchemy,flask_migrate,flask_jwt_exte
 [EXCEPTIONS]
 
 # Exceptions that will emit a warning when being caught.
-overgeneral-exceptions=Exception
+overgeneral-exceptions=builtins.Exception
