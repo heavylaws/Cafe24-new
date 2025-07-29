@@ -9,7 +9,11 @@ from app.models import User
 
 
 def _get_current_user_from_jwt():
-    """Utility that extracts the User instance from the JWT (or returns None)."""
+    """Extract the User instance from the JWT.
+
+    Returns:
+        User: The current user or None if not found.
+    """
     user_id_str = get_jwt_identity()
     try:
         user_id = int(user_id_str)  # Tokens store integer user IDs
@@ -44,7 +48,7 @@ def token_required(fn):
 
         # Check if first argument is already a user (from another decorator)
         if args and hasattr(args[0], "id") and hasattr(args[0], "username"):
-            # First argument is already a user, dont inject another
+            # First argument is already a user, don't inject another
             return fn(*args, **kwargs)
 
         # Inject user as first positional arg if the function expects it
@@ -64,7 +68,7 @@ def roles_required(*roles):
     iterable of role strings (``@roles_required(['manager', 'cashier'])``).
     """
     # Flatten roles so we always end up with a list of strings
-    allowed_roles: list[str] = []
+    allowed_roles = []
     for r in roles:
         if isinstance(r, (list, tuple, set)):
             allowed_roles.extend(list(r))

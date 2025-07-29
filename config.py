@@ -1,3 +1,7 @@
+"""Configuration settings for the Flask application.
+
+This module contains configuration classes for different environments.
+"""
 import os
 
 from dotenv import load_dotenv
@@ -22,6 +26,7 @@ class Config:
 
     @staticmethod
     def warn_if_default_keys():
+        """Warn if default keys are being used."""
         if not os.getenv("SECRET_KEY"):
             print("[WARNING] Using default SECRET_KEY. Set it in .env for production.")
         if not os.getenv("JWT_SECRET_KEY"):
@@ -30,10 +35,12 @@ class Config:
             )
 
 class DevelopmentConfig(Config):
+    """Development configuration."""
     DEBUG = True
     SQLALCHEMY_ECHO = True
 
 class TestingConfig(Config):
+    """Testing configuration."""
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.getenv(
         "TEST_DATABASE_URL",
@@ -41,6 +48,7 @@ class TestingConfig(Config):
     )
 
 class ProductionConfig(Config):
+    """Production configuration."""
     DEBUG = False
     SQLALCHEMY_ECHO = False
 
@@ -52,6 +60,7 @@ config_by_name = {
 }
 
 def get_config_name():
+    """Get the configuration name from environment."""
     return os.getenv("FLASK_CONFIG", "default")
 
 current_config = config_by_name[get_config_name()]

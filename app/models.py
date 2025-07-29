@@ -11,9 +11,7 @@ from typing import Optional
 
 from sqlalchemy import Enum, Index, MetaData
 from werkzeug.security import check_password_hash, generate_password_hash
-
 from app import db
-
 
 # --- Enums ---
 class UserRole(enum.Enum):
@@ -22,16 +20,13 @@ class UserRole(enum.Enum):
     barista = "barista"
     manager = "manager"
 
-
 class DiscountType(enum.Enum):
     percentage = "percentage"
     fixed_amount = "fixed_amount"
 
-
 class AppliesTo(enum.Enum):
     order = "order"
     item = "item"
-
 
 class OrderStatus(enum.Enum):
     pending_payment = "pending_payment"
@@ -41,12 +36,10 @@ class OrderStatus(enum.Enum):
     completed = "completed"
     cancelled = "cancelled"
 
-
 class PaymentMethod(enum.Enum):
     cash = "cash"
     card = "card"
     mixed = "mixed"
-
 
 class PaymentStatus(enum.Enum):
     pending = "pending"
@@ -54,7 +47,6 @@ class PaymentStatus(enum.Enum):
     refunded = "refunded"
     failed = "failed"
     partially_refunded = "partially_refunded"
-
 
 # --- Models ---
 class User(db.Model):
@@ -71,14 +63,15 @@ class User(db.Model):
     )
 
     def set_password(self, password):
+        """Set the user's password hash."""
         self.hashed_password = generate_password_hash(password)
 
     def check_password(self, password):
+        """Check if the provided password matches the user's password."""
         return check_password_hash(self.hashed_password, password)
 
     def __repr__(self):
         return f"<User {self.username} ({self.role.value})>"
-
 
 class Category(db.Model):
     __tablename__ = "categories"
@@ -109,8 +102,8 @@ class Category(db.Model):
         self.parent_id = parent_id
 
     def __repr__(self):
+        """Return string representation of Category."""
         return f"<Category {self.parent.name if self.parent else ''} / {self.name}>"
-
 
 class MenuItem(db.Model):
     __tablename__ = "menuitems"
@@ -141,8 +134,8 @@ class MenuItem(db.Model):
     )
 
     def __repr__(self):
+        """Return string representation of MenuItem."""
         return f"<MenuItem {self.name}>"
-
 
 class MenuItemOption(db.Model):
     __tablename__ = "menuitemoptions"
@@ -163,7 +156,6 @@ class MenuItemOption(db.Model):
         cascade="all, delete-orphan",
     )
 
-
 class MenuItemOptionChoice(db.Model):
     __tablename__ = "menuitemoptionchoices"
     id = db.Column(db.Integer, primary_key=True)
@@ -178,7 +170,6 @@ class MenuItemOptionChoice(db.Model):
     updated_at = db.Column(
         db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow
     )
-
 
 class Ingredient(db.Model):
     __tablename__ = "ingredients"
@@ -196,8 +187,8 @@ class Ingredient(db.Model):
     )
 
     def __repr__(self):
+        """Return string representation of Ingredient."""
         return f"<Ingredient {self.name} ({self.unit}) - Stock: {self.current_stock}>"
-
 
 class Recipe(db.Model):
     __tablename__ = "recipes"
@@ -211,8 +202,9 @@ class Recipe(db.Model):
     ingredient = db.relationship("Ingredient")
 
     def __repr__(self):
-        return f"<Recipe MenuItem {self.menu_item_id} needs {self.amount} of Ingredient {self.ingredient_id}>"
-
+        """Return string representation of Recipe."""
+        return (f"<Recipe MenuItem {self.menu_item_id} needs {self.amount} "
+                f"of Ingredient {self.ingredient_id}>")
 
 class Discount(db.Model):
     __tablename__ = "discounts"
@@ -229,8 +221,9 @@ class Discount(db.Model):
     )
 
     def __repr__(self):
-        return f"<Discount {self.name} - {self.discount_value}{'%' if self.discount_type == DiscountType.percentage else 'USD'}>"
-
+        """Return string representation of Discount."""
+        discount_unit = '%' if self.discount_type == DiscountType.percentage else 'USD'
+        return f"<Discount {self.name} - {self.discount_value}{discount_unit}>"
 
 class Order(db.Model):
     __tablename__ = "orders"
@@ -261,8 +254,8 @@ class Order(db.Model):
     order_items = db.relationship("OrderItem", backref="order", lazy=True)
 
     def __repr__(self):
+        """Return string representation of Order."""
         return f"<Order {self.id} by User {self.courier_id}>"
-
 
 class OrderItem(db.Model):
     __tablename__ = "orderitems"
@@ -285,8 +278,8 @@ class OrderItem(db.Model):
     )
 
     def __repr__(self):
+        """Return string representation of OrderItem."""
         return f"<OrderItem {self.id} for Order {self.order_id}>"
-
 
 # --- Placeholders for missing models to resolve import errors ---
 class SystemSettings(db.Model):
@@ -294,7 +287,6 @@ class SystemSettings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     setting_key = db.Column(db.String(255), unique=True, nullable=False)
     setting_value = db.Column(db.String(255), nullable=False)
-
 
 class StockAdjustment(db.Model):
     __tablename__ = "stockadjustments"
@@ -307,13 +299,11 @@ class StockAdjustment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-
 class StockInvoice(db.Model):
     __tablename__ = "stockinvoices"
     id = db.Column(db.Integer, primary_key=True)
     invoice_number = db.Column(db.String(255), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-
 
 class StockInvoiceItem(db.Model):
     __tablename__ = "stockinvoiceitems"
@@ -326,14 +316,12 @@ class StockInvoiceItem(db.Model):
     )
     quantity = db.Column(db.Float, nullable=False)
 
-
 class OrderDiscount(db.Model):
     __tablename__ = "orderdiscounts"
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
     discount_id = db.Column(db.Integer, db.ForeignKey("discounts.id"), nullable=False)
     amount = db.Column(db.Numeric(10, 2), nullable=False)
-
 
 class OrderItemDiscount(db.Model):
     __tablename__ = "orderitemdiscounts"

@@ -1,3 +1,7 @@
+"""Alembic migration environment configuration.
+
+This module configures Alembic for database migrations.
+"""
 import os
 import sys
 from logging.config import fileConfig
@@ -11,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import your SQLAlchemy models and app
 from app import create_app, db
-from app.models import *
+from app.models import *  # pylint: disable=wildcard-import,unused-wildcard-import
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -24,6 +28,7 @@ config = context.config
 fileConfig(config.config_file_name)
 
 target_metadata = db.Model.metadata
+
 
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
@@ -52,18 +57,18 @@ def run_migrations_online():
     """
     # Create the Flask app
     app = create_app()
-    
+
     # Connect to the database using the app's configuration
     with app.app_context():
         connectable = db.engine
-        
+
         with connectable.connect() as connection:
             context.configure(
                 connection=connection,
                 target_metadata=target_metadata,
                 compare_type=True
             )
-            
+
             with context.begin_transaction():
                 context.run_migrations()
 

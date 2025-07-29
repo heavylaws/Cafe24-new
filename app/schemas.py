@@ -20,7 +20,6 @@ from app.models import (
 
 ma = Marshmallow()
 
-
 def configure_ma(app):
     """Initialize Marshmallow with Flask app."""
     ma.init_app(app)
@@ -31,7 +30,6 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         """Meta configuration for UserSchema."""
-
         model = User
         load_instance = True
         exclude = ("hashed_password",)
@@ -42,7 +40,6 @@ class CategorySchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         """Meta configuration for CategorySchema."""
-
         model = Category
         load_instance = True
         include_relationships = True
@@ -56,7 +53,6 @@ class MenuItemOptionChoiceSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         """Meta configuration for MenuItemOptionChoiceSchema."""
-
         model = MenuItemOptionChoice
         load_instance = True
 
@@ -68,7 +64,6 @@ class MenuItemOptionSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         """Meta configuration for MenuItemOptionSchema."""
-
         model = MenuItemOption
         load_instance = True
         include_relationships = True
@@ -85,7 +80,6 @@ class MenuItemSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         """Meta configuration for MenuItemSchema."""
-
         model = MenuItem
         load_instance = True
         include_relationships = True
@@ -114,7 +108,6 @@ class OrderItemSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         """Meta configuration for OrderItemSchema."""
-
         model = OrderItem
         load_instance = True
         include_fk = True
@@ -131,7 +124,6 @@ class OrderSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         """Meta configuration for OrderSchema."""
-
         model = Order
         load_instance = True
 

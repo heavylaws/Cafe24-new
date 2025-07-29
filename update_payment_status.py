@@ -1,6 +1,11 @@
+"""Database update script for adding payment status to orders.
+
+This script adds the payment_status column to the orders table and updates
+existing records with appropriate status values.
+"""
 import os
 import sys
-
+import traceback
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 
@@ -14,7 +19,7 @@ def get_database_url():
 
 
 def update_database():
-    """Update database with payment status column and set initial values"""
+    """Update database with payment status column and set initial values."""
     db_url = get_database_url()
     engine = create_engine(db_url)
 
@@ -62,8 +67,6 @@ def update_database():
 
     except Exception as e:
         print(f"Error updating database: {e}")
-        import traceback
-
         traceback.print_exc()
         sys.exit(1)
     finally:

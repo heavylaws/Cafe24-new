@@ -1,4 +1,7 @@
-# app/utils/__init__.py
+"""Utilities package for the Cafe24 POS application.
+
+This package contains utility functions and decorators.
+"""
 # This file makes the 'utils' directory a Python package.
 
 # You can optionally import utility functions here to make them directly accessible
