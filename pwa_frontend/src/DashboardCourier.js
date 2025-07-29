@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import OrderPlacement from './components/OrderPlacement';
+import CourierMobileDashboard from './components/CourierMobileDashboard';
 import { Tabs, Tab, Box, AppBar, Paper, Typography, List, ListItem, ListItemText, Chip, CircularProgress, Alert, Button } from '@mui/material';
 
 function ActiveOrdersList() {
@@ -156,60 +157,8 @@ function CompletedOrdersList() {
 }
 
 function DashboardCourier({ user, onLogout }) {
-  const [tab, setTab] = useState(0);
-  const handleTabChange = (event, newValue) => setTab(newValue);
-
-  return (
-    <div style={{ padding: '20px' }}>
-      <header style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '20px',
-        paddingBottom: '10px',
-        borderBottom: '1px solid #eee'
-      }}>
-      <h2>Courier Dashboard</h2>
-        <div>
-          <span style={{ marginRight: '15px' }}>Welcome, {user.full_name || user.username}!</span>
-          <button
-            onClick={onLogout}
-            style={{
-              padding: '5px 15px',
-              backgroundColor: '#dc3545',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            Logout
-          </button>
-        </div>
-      </header>
-      <Box sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: 2, boxShadow: 1, mb: 2 }}>
-        <AppBar position="static" color="default" elevation={0} sx={{ borderRadius: 2 }}>
-          <Tabs
-            value={tab}
-            onChange={handleTabChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-            aria-label="courier dashboard tabs"
-          >
-            <Tab label="New Order" />
-            <Tab label="Active Orders" />
-            <Tab label="Order History" />
-          </Tabs>
-        </AppBar>
-        <Box sx={{ p: 3 }}>
-          {tab === 0 && <OrderPlacement userRole="courier" />}
-          {tab === 1 && <ActiveOrdersList />}
-          {tab === 2 && <CompletedOrdersList />}
-        </Box>
-      </Box>
-    </div>
-  );
+  // Use the new mobile-optimized dashboard
+  return <CourierMobileDashboard user={user} onLogout={onLogout} />;
 }
 
 export default DashboardCourier; 

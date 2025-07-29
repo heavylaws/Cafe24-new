@@ -11,4 +11,3 @@
 # from .report_routes import report_bp
 
 # For now, it can remain empty if blueprints are imported directly in app/__init__.py.
-
