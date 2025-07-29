@@ -5,11 +5,13 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+from flask_socketio import SocketIO
 from config import config_by_name
 
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
+socketio = SocketIO()
 
 def create_app(config_name="development"):
     """Working Flask app for Cafe24 POS with routes."""
@@ -20,6 +22,9 @@ def create_app(config_name="development"):
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
     jwt.init_app(app)
+    
+    # Initialize SocketIO with CORS support
+    socketio.init_app(app, cors_allowed_origins="*", async_mode='threading')
     
     # Basic CORS
     CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
@@ -34,6 +39,7 @@ def create_app(config_name="development"):
     from app.routes.stock_routes import stock_bp
     from app.routes.category_routes import category_bp
     from app.routes.recipe_routes import recipe_bp
+    from app.routes.realtime_routes import realtime_bp
     from app.routes.menu_routes import register_menu_item_options_shim
     
     app.register_blueprint(auth_bp, url_prefix='/api/v1/auth')
@@ -45,6 +51,7 @@ def create_app(config_name="development"):
     app.register_blueprint(stock_bp, url_prefix='/api/v1/stock')
     app.register_blueprint(category_bp, url_prefix='/api/v1')
     app.register_blueprint(recipe_bp, url_prefix='/api/v1/menu')
+    app.register_blueprint(realtime_bp, url_prefix='/api/v1/realtime')
     
     # System settings endpoint
     from app.routes.menu_routes import get_system_settings, update_system_settings

@@ -1,5 +1,5 @@
 import os
-from app import create_app, db
+from app import create_app, db, socketio
 # Import models if you plan to use Flask-Migrate or need to access them here for other reasons
 # from app.models import User, Category, MenuItem, Order # etc.
 import logging
@@ -93,6 +93,7 @@ if __name__ == '__main__':
         return {"message": "Internal server error"}, 500
     
     try:
-        app.run(host='0.0.0.0', port=5000)
+        # Use SocketIO to run the app instead of app.run for WebSocket support
+        socketio.run(app, host='0.0.0.0', port=5000, debug=True)
     except Exception as e:
         logging.exception(f"Failed to start app: {e}")

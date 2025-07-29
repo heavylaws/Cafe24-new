@@ -197,6 +197,13 @@ def create_order():
 
             db.session.commit()
 
+            # Emit real-time notification for new order
+            try:
+                from app.routes.realtime_routes import emit_new_order
+                emit_new_order(new_order.id)
+            except Exception as emit_error:
+                current_app.logger.warning(f"Failed to emit real-time update for new order: {emit_error}")
+            
             return jsonify({
                 'message': 'Order created successfully!',
                 'order_id': new_order.id,
@@ -346,6 +353,7 @@ def update_order_status(order_id):
         return jsonify({'message': f'Cannot change status from {order.status.value} to {new_status} with role {current_user.role.value}'}), 403
 
     try:
+        old_status = order.status.value if hasattr(order.status, 'value') else str(order.status)
         order.status = new_status
         if new_status == 'paid_waiting_preparation' and current_user.role.value == 'cashier':
             order.cashier_id = current_user.id
@@ -356,6 +364,14 @@ def update_order_status(order_id):
 
         order.updated_at = datetime.datetime.utcnow()
         db.session.commit()
+        
+        # Emit real-time notification for status change
+        try:
+            from app.routes.realtime_routes import emit_order_status_change
+            emit_order_status_change(order.id, new_status, old_status)
+        except Exception as emit_error:
+            current_app.logger.warning(f"Failed to emit real-time update for order status change: {emit_error}")
+        
         # Could return the updated order object, simplified for now
         return jsonify({'message': f'Order {order.order_number} status updated to {new_status}'}), 200
     except Exception as e:
