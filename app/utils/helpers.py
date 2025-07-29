@@ -1,22 +1,40 @@
-# app/utils/helpers.py
+"""Helper utility functions for the Cafe24 POS application.
+
+This module contains utility functions for currency conversion, order numbering, etc.
+"""
+import datetime
+import random
 from decimal import Decimal, ROUND_HALF_UP
-from flask import current_app # To access app.config for exchange rate and rounding factor
-from datetime import datetime, date
+from datetime import date
+from flask import current_app
 from app.models import Order
 
+
 def get_system_setting(key, default=None):
-    """
-    Helper function to get a system setting from the database.
+    """Get a system setting from the database.
+    
     For v0.1, we might hardcode or get from config, but this is for future use.
+    
+    Args:
+        key (str): The setting key to retrieve.
+        default: Default value if setting not found.
+        
+    Returns:
+        str: The setting value or default.
     """
-    from app.models import SystemSettings # Local import to avoid circular dependency
+    # Local import to avoid circular dependency
+    from app.models import SystemSettings
     setting = SystemSettings.query.filter_by(setting_key=key).first()
     return setting.setting_value if setting else default
 
+
 def get_current_exchange_rate():
-    """
-    Retrieves the current USD to LBP exchange rate.
+    """Retrieve the current USD to LBP exchange rate.
+    
     First tries to get from database, falls back to config.
+    
+    Returns:
+        Decimal: The current exchange rate.
     """
     try:
         # Try to get from database first
@@ -25,19 +43,30 @@ def get_current_exchange_rate():
             return Decimal(rate_setting)
     except Exception:
         pass
-    
+
     # Fall back to config
     return Decimal(current_app.config.get('USD_TO_LBP_EXCHANGE_RATE', '90000.0'))
 
+
 def get_lbp_rounding_factor():
-    """
-    Retrieves the LBP rounding factor (e.g., 5000).
+    """Retrieve the LBP rounding factor (e.g., 5000).
+    
+    Returns:
+        int: The rounding factor.
     """
     return int(current_app.config.get('LBP_ROUNDING_FACTOR', '5000'))
 
+
 def calculate_lbp_price(price_usd, exchange_rate=None, rounding_factor=None):
-    """
-    Converts a USD price to LBP and rounds it according to the system's rounding factor.
+    """Convert a USD price to LBP and round it according to the system's rounding factor.
+    
+    Args:
+        price_usd: Price in USD to convert.
+        exchange_rate: Exchange rate to use (optional).
+        rounding_factor: Rounding factor to use (optional).
+        
+    Returns:
+        int: The price in LBP, rounded.
     """
     if price_usd is None:
         return None
@@ -48,42 +77,49 @@ def calculate_lbp_price(price_usd, exchange_rate=None, rounding_factor=None):
     if rounding_factor is None:
         rounding_factor = get_lbp_rounding_factor()
 
-    price_usd_decimal = Decimal(str(price_usd)) # Ensure it's a Decimal
+    price_usd_decimal = Decimal(str(price_usd))  # Ensure it's a Decimal
     lbp_unrounded = price_usd_decimal * exchange_rate
 
     # Round to the nearest multiple of rounding_factor
     # (Value / Factor) -> Round -> * Factor
-    if rounding_factor == 0: # Avoid division by zero if factor is misconfigured
+    if rounding_factor == 0:  # Avoid division by zero if factor is misconfigured
         return int(lbp_unrounded.to_integral_value(rounding=ROUND_HALF_UP))
 
-    rounded_lbp = (lbp_unrounded / Decimal(rounding_factor)).to_integral_value(rounding=ROUND_HALF_UP) * Decimal(rounding_factor)
+    rounded_lbp = (lbp_unrounded / Decimal(rounding_factor)).to_integral_value(
+        rounding=ROUND_HALF_UP) * Decimal(rounding_factor)
     return int(rounded_lbp)
 
+
 def generate_order_number():
-    """
-    Generates a unique order number.
+    """Generate a unique order number.
+    
     For v0.1, a simple timestamp-based number. Can be made more robust.
+    
+    Returns:
+        str: A unique order number.
     """
-    import datetime
-    import random
     now = datetime.datetime.utcnow()
     return f"ORD-{now.strftime('%Y%m%d%H%M%S')}-{random.randint(1000, 9999)}"
 
+
 def generate_customer_number():
-    """
-    Generates a unique customer number based on date + incremental counter.
+    """Generate a unique customer number based on date + incremental counter.
+    
     Format: YYYYMMDD-XXX where XXX is a 3-digit counter that resets daily at midnight.
     Example: 20241201-001, 20241201-002, etc.
+    
+    Returns:
+        str: A unique customer number.
     """
     today = date.today()
     today_str = today.strftime('%Y%m%d')
-    
+
     # Find the highest customer number for today
     today_pattern = f"{today_str}-%"
     highest_customer = Order.query.filter(
         Order.customer_number.like(today_pattern)
     ).order_by(Order.customer_number.desc()).first()
-    
+
     if highest_customer:
         # Extract the counter from the highest number
         try:
@@ -93,26 +129,6 @@ def generate_customer_number():
             next_counter = 1
     else:
         next_counter = 1
-    
+
     # Format as YYYYMMDD-XXX (3-digit counter with leading zeros)
     return f"{today_str}-{next_counter:03d}"
-
-# Example usage (primarily for backend logic, not directly in routes for complex objects):
-# if __name__ == '__main__':
-#     # This part won't run when imported, only if you execute helpers.py directly
-#     # and assumes a Flask app context is available if using current_app
-#     class MockApp:
-#         def __init__(self):
-#             self.config = {
-#                 'USD_TO_LBP_EXCHANGE_RATE': '90000.0',
-#                 'LBP_ROUNDING_FACTOR': '5000'
-#             }
-#     current_app = MockApp() # Mocking current_app for standalone testing
-
-#     print(f"0.50 USD to LBP: {calculate_lbp_price(0.50)}")      # Expected: 45000
-#     print(f"0.66 USD to LBP: {calculate_lbp_price(0.66)}")      # Expected: 60000 (59400 rounds to 60000)
-#     print(f"0.75 USD to LBP: {calculate_lbp_price(0.75)}")      # Expected: 70000 (67500 rounds to 70000)
-#     print(f"0.72 USD to LBP: {calculate_lbp_price(0.72)}")      # Expected: 65000 (64800 rounds to 65000)
-#     print(f"0.01 USD to LBP: {calculate_lbp_price(Decimal('0.01'))}") # Expected: 0 (900 rounds to 0)
-#     print(f"0.03 USD to LBP: {calculate_lbp_price(Decimal('0.03'))}") # Expected: 5000 (2700 rounds to 5000)
-

@@ -1,13 +1,21 @@
+"""Authentication and authorization decorators for the Cafe24 POS application.
+
+This module contains decorators for JWT token validation and role-based access control.
+"""
+import inspect
+import logging
 from functools import wraps
 from flask import jsonify
 from flask_jwt_extended import get_jwt_identity, verify_jwt_in_request
 from app.models import User
-import inspect
-import logging
 
 
 def _get_current_user_from_jwt():
-    """Utility that extracts the User instance from the JWT (or returns None)."""
+    """Extract the User instance from the JWT.
+    
+    Returns:
+        User: The current user or None if not found.
+    """
     user_id_str = get_jwt_identity()
     try:
         user_id = int(user_id_str)  # Tokens store integer user IDs
@@ -61,7 +69,7 @@ def roles_required(*roles):
     iterable of role strings (``@roles_required(['manager', 'cashier'])``).
     """
     # Flatten roles so we always end up with a list of strings
-    allowed_roles: list[str] = []
+    allowed_roles = []
     for r in roles:
         if isinstance(r, (list, tuple, set)):
             allowed_roles.extend(list(r))
@@ -88,12 +96,14 @@ def roles_required(*roles):
                     return jsonify({"msg": "Invalid token"}), 401
 
             if not getattr(user, 'role', None):
-                logging.warning(f"roles_required: User {user} has no role.")
+                logging.warning("roles_required: User %s has no role.", user)
                 return jsonify({"msg": "Invalid user role"}), 403
             user_role_value = user.role.value if hasattr(user.role, 'value') else user.role
             if user_role_value not in allowed_roles:
-                logging.warning(f"roles_required: User {user.username} with role {user_role_value} not in allowed roles: {allowed_roles}")
-                return jsonify({"msg": f"Access restricted: Requires one of: {', '.join(allowed_roles)}"}), 403
+                logging.warning("roles_required: User %s with role %s not in allowed roles: %s",
+                              user.username, user_role_value, allowed_roles)
+                message = f"Access restricted: Requires one of: {', '.join(allowed_roles)}"
+                return jsonify({"msg": message}), 403
 
             # If user was already in args, don't inject again
             if args and hasattr(args[0], 'id') and hasattr(args[0], 'username'):

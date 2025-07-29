@@ -31,31 +31,31 @@ def seed_db_command():
         if not SystemSettings.query.filter_by(
             setting_key='usd_to_lbp_exchange_rate').first():
             db.session.add(SystemSettings(
-                setting_key='usd_to_lbp_exchange_rate', 
+                setting_key='usd_to_lbp_exchange_rate',
                 setting_value='90000'))
         if not SystemSettings.query.filter_by(
             setting_key='primary_currency_code').first():
             db.session.add(SystemSettings(
-                setting_key='primary_currency_code', 
+                setting_key='primary_currency_code',
                 setting_value='LBP'))
         if not SystemSettings.query.filter_by(
             setting_key='secondary_currency_code').first():
             db.session.add(SystemSettings(
-                setting_key='secondary_currency_code', 
+                setting_key='secondary_currency_code',
                 setting_value='USD'))
 
         print("System settings seeded.")
 
-        # Seed Users (example users, passwords should be more secure 
+        # Seed Users (example users, passwords should be more secure
         # or managed differently in real app)
         users_to_seed = [
-            {'username': 'manager1', 'password': 'password123', 
+            {'username': 'manager1', 'password': 'password123',
              'full_name': 'Manager One', 'role': 'manager'},
-            {'username': 'courier1', 'password': 'password123', 
+            {'username': 'courier1', 'password': 'password123',
              'full_name': 'Courier One', 'role': 'courier'},
-            {'username': 'barista1', 'password': 'password123', 
+            {'username': 'barista1', 'password': 'password123',
              'full_name': 'Barista One', 'role': 'barista'},
-            {'username': 'cashier1', 'password': 'password123', 
+            {'username': 'cashier1', 'password': 'password123',
              'full_name': 'Cashier One', 'role': 'cashier'},
         ]
         for user_data in users_to_seed:
@@ -70,7 +70,7 @@ def seed_db_command():
 
         print("Users seeded.")
 
-        # Add pre-loaded menu data here 
+        # Add pre-loaded menu data here
         # (Categories, MenuItems, MenuItemOptions, MenuItemOptionChoices)
         # This part can be extensive. For brevity, it's conceptual here.
         # Example:
@@ -93,7 +93,7 @@ def migrate_db_command():
 
 if __name__ == '__main__':
     # When running directly (python run.py), it will use the Werkzeug development server.
-    # For production, use a WSGI server like Gunicorn 
+    # For production, use a WSGI server like Gunicorn
     # (e.g., gunicorn --bind 0.0.0.0:5000 run:app)
     # The FLASK_DEBUG=1 in .env (or DevelopmentConfig) enables debug mode for the dev server.
 

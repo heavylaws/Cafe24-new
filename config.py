@@ -41,7 +41,7 @@ class TestingConfig(Config):
     """Testing configuration."""
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.getenv("TEST_DATABASE_URL",
-                                       f"sqlite:///{os.path.join(basedir, 'pos_system_v01_test.db')}")
+                                    f"sqlite:///{os.path.join(basedir, 'pos_system_v01_test.db')}")
 
 
 class ProductionConfig(Config):
