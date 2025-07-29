@@ -1,4 +1,7 @@
-# app/routes/__init__.py
+"""Routes package for the Cafe24 POS application.
+
+This package contains all route blueprints for the application.
+"""
 # This file makes the 'routes' directory a Python package.
 
 # Import blueprints to make them available for registration in app/__init__.py
@@ -11,4 +14,3 @@
 # from .report_routes import report_bp
 
 # For now, it can remain empty if blueprints are imported directly in app/__init__.py.
-

@@ -1,4 +1,7 @@
-# app/services/__init__.py
+"""Services package for the Cafe24 POS application.
+
+This package contains business logic services.
+"""
 # This file makes the 'services' directory a Python package.
 
 # This directory is intended for business logic that is too complex
@@ -12,6 +15,4 @@
 # from .order_processing_service import process_new_order, calculate_order_totals
 # from .menu_service import get_formatted_menu
 # from .user_service import create_user_account
-
-pass
 

@@ -6,7 +6,7 @@ import datetime
 import enum
 from typing import Optional
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import Enum, Index, MetaData
+from sqlalchemy import Enum
 from app import db
 
 
@@ -68,7 +68,8 @@ class User(db.Model):
     role = db.Column(Enum(UserRole), nullable=False)
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
 
     def set_password(self, password):
         """Set the user's password hash."""
@@ -136,9 +137,12 @@ class MenuItem(db.Model):
                                         name='_category_item_name_uc'),)
 
     def __repr__(self):
+        """Return string representation of MenuItem."""
         return f"<MenuItem {self.name}>"
 
+
 class MenuItemOption(db.Model):
+    """Menu item option model for customizable menu items."""
     __tablename__ = 'menuitemoptions'
     id = db.Column(db.Integer, primary_key=True)
     menu_item_id = db.Column(db.Integer, db.ForeignKey('menuitems.id'), nullable=False)
@@ -146,11 +150,15 @@ class MenuItemOption(db.Model):
     is_required = db.Column(db.Boolean, default=False)
     sort_order = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
 
-    choices = db.relationship('MenuItemOptionChoice', backref='option', lazy='select', cascade="all, delete-orphan")
+    choices = db.relationship('MenuItemOptionChoice', backref='option', lazy='select',
+                            cascade="all, delete-orphan")
+
 
 class MenuItemOptionChoice(db.Model):
+    """Menu item option choice model for specific option values."""
     __tablename__ = 'menuitemoptionchoices'
     id = db.Column(db.Integer, primary_key=True)
     option_id = db.Column(db.Integer, db.ForeignKey('menuitemoptions.id'), nullable=False)
@@ -159,9 +167,12 @@ class MenuItemOptionChoice(db.Model):
     is_default = db.Column(db.Boolean, default=False)
     sort_order = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
+
 
 class Ingredient(db.Model):
+    """Ingredient model for inventory management."""
     __tablename__ = 'ingredients'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), unique=True, nullable=False)
@@ -172,12 +183,16 @@ class Ingredient(db.Model):
     reorder_level = db.Column(db.Float, nullable=True, default=0.0)
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
 
     def __repr__(self):
+        """Return string representation of Ingredient."""
         return f"<Ingredient {self.name} ({self.unit}) - Stock: {self.current_stock}>"
 
+
 class Recipe(db.Model):
+    """Recipe model linking menu items to ingredients."""
     __tablename__ = 'recipes'
     id = db.Column(db.Integer, primary_key=True)
     menu_item_id = db.Column(db.Integer, db.ForeignKey('menuitems.id'), nullable=False)
@@ -187,9 +202,13 @@ class Recipe(db.Model):
     ingredient = db.relationship('Ingredient')
 
     def __repr__(self):
-        return f"<Recipe MenuItem {self.menu_item_id} needs {self.amount} of Ingredient {self.ingredient_id}>"
+        """Return string representation of Recipe."""
+        return (f"<Recipe MenuItem {self.menu_item_id} needs {self.amount} "
+                f"of Ingredient {self.ingredient_id}>")
+
 
 class Discount(db.Model):
+    """Discount model for promotional offers."""
     __tablename__ = 'discounts'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
@@ -199,19 +218,26 @@ class Discount(db.Model):
     applies_to = db.Column(Enum(AppliesTo), nullable=False)
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
 
     def __repr__(self):
-        return f"<Discount {self.name} - {self.discount_value}{'%' if self.discount_type == DiscountType.percentage else 'USD'}>"
+        """Return string representation of Discount."""
+        discount_unit = '%' if self.discount_type == DiscountType.PERCENTAGE else 'USD'
+        return f"<Discount {self.name} - {self.discount_value}{discount_unit}>"
+
 
 class Order(db.Model):
+    """Order model representing customer orders."""
     __tablename__ = 'orders'
     id = db.Column(db.Integer, primary_key=True)
     order_number = db.Column(db.String(20), unique=True, nullable=False)
     courier_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     customer_number = db.Column(db.String(20), nullable=True)  # Can be anonymous
-    status = db.Column(Enum(OrderStatus), nullable=False, default=OrderStatus.pending_payment)
-    payment_status = db.Column(Enum(PaymentStatus), nullable=False, default=PaymentStatus.pending)
+    status = db.Column(Enum(OrderStatus), nullable=False,
+                      default=OrderStatus.PENDING_PAYMENT)
+    payment_status = db.Column(Enum(PaymentStatus), nullable=False,
+                             default=PaymentStatus.PENDING)
     payment_method = db.Column(Enum(PaymentMethod), nullable=True)
     subtotal_usd = db.Column(db.Numeric(10, 2), nullable=False)
     subtotal_lbp_rounded = db.Column(db.Integer, nullable=False)
@@ -222,40 +248,51 @@ class Order(db.Model):
     exchange_rate_at_order_time = db.Column(db.Numeric(15, 2), nullable=True)
     notes = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
 
     order_items = db.relationship('OrderItem', backref='order', lazy=True)
 
     def __repr__(self):
+        """Return string representation of Order."""
         return f"<Order {self.id} by User {self.courier_id}>"
 
+
 class OrderItem(db.Model):
+    """Order item model representing individual items in an order."""
     __tablename__ = 'orderitems'
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey('orders.id'), nullable=False)
     menu_item_id = db.Column(db.Integer, db.ForeignKey('menuitems.id'), nullable=False)
     menu_item_name = db.Column(db.String(255), nullable=False)
     quantity = db.Column(db.Integer, nullable=False, default=1)
-    chosen_option_choice_id = db.Column(db.Integer, db.ForeignKey('menuitemoptionchoices.id'), nullable=True)
+    chosen_option_choice_id = db.Column(db.Integer,
+                                      db.ForeignKey('menuitemoptionchoices.id'),
+                                      nullable=True)
     chosen_option_choice_name = db.Column(db.String(255), nullable=True)
     unit_price_usd_at_order = db.Column(db.Numeric(10, 2), nullable=False)
     unit_price_lbp_rounded_at_order = db.Column(db.Integer, nullable=False)
     line_total_usd_at_order = db.Column(db.Numeric(10, 2), nullable=False)
     line_total_lbp_rounded_at_order = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow,
+                          onupdate=datetime.datetime.utcnow)
 
     def __repr__(self):
+        """Return string representation of OrderItem."""
         return f"<OrderItem {self.id} for Order {self.order_id}>"
+
 
 # --- Placeholders for missing models to resolve import errors ---
 class SystemSettings(db.Model):
+    """System settings model for configuration values."""
     __tablename__ = 'systemsettings'
     id = db.Column(db.Integer, primary_key=True)
     setting_key = db.Column(db.String(255), unique=True, nullable=False)
     setting_value = db.Column(db.String(255), nullable=False)
 
 class StockAdjustment(db.Model):
+    """Stock adjustment model for inventory changes."""
     __tablename__ = 'stockadjustments'
     id = db.Column(db.Integer, primary_key=True)
     ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.id'), nullable=False)
@@ -264,20 +301,26 @@ class StockAdjustment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
+
 class StockInvoice(db.Model):
+    """Stock invoice model for purchase records."""
     __tablename__ = 'stockinvoices'
     id = db.Column(db.Integer, primary_key=True)
     invoice_number = db.Column(db.String(255), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
+
 class StockInvoiceItem(db.Model):
+    """Stock invoice item model for individual invoice line items."""
     __tablename__ = 'stockinvoiceitems'
     id = db.Column(db.Integer, primary_key=True)
     invoice_id = db.Column(db.Integer, db.ForeignKey('stockinvoices.id'), nullable=False)
     ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.id'), nullable=False)
     quantity = db.Column(db.Float, nullable=False)
 
+
 class OrderDiscount(db.Model):
+    """Order discount model for applied discounts to orders."""
     __tablename__ = 'orderdiscounts'
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey('orders.id'), nullable=False)
@@ -285,6 +328,7 @@ class OrderDiscount(db.Model):
     amount = db.Column(db.Numeric(10, 2), nullable=False)
 
 class OrderItemDiscount(db.Model):
+    """Order item discount model for applied discounts to specific order items."""
     __tablename__ = 'orderitemdiscounts'
     id = db.Column(db.Integer, primary_key=True)
     order_item_id = db.Column(db.Integer, db.ForeignKey('orderitems.id'), nullable=False)
