@@ -1,70 +1,201 @@
-# Getting Started with Create React App
+# Cafe24 POS - Frontend (PWA)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the React-based Progressive Web Application (PWA) frontend for the Cafe24 Point of Sale system.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+The frontend provides a modern, responsive interface for different user roles:
+- **Manager Dashboard**: Complete system administration
+- **Cashier Interface**: Order management and payment processing  
+- **Barista Dashboard**: Order preparation workflow
+- **Courier Interface**: Delivery management
 
-### `npm start`
+## Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React 19.x**: Modern React with hooks and context
+- **Material-UI 7.x**: Component library and design system
+- **Axios**: HTTP client for API communication
+- **PWA Features**: Service worker for offline capability
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Quick Start
 
-### `npm test`
+### Prerequisites
+- Node.js 14+ and npm
+- Backend API running on `http://localhost:5000`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Development Setup
+```bash
+cd pwa_frontend
+npm install
+npm start
+```
 
-### `npm run build`
+The app runs on [http://localhost:3000](http://localhost:3000)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Environment Configuration
+Create a `.env` file:
+```
+REACT_APP_API_URL=http://localhost:5000
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Testing
+```bash
+npm test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Production Build
+```bash
+npm run build
+```
 
-### `npm run eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Authentication & Authorization
+- JWT-based authentication
+- Role-based routing and access control
+- Secure token management
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Manager Dashboard
+- Menu item management (CRUD operations)
+- Category organization
+- User management
+- Sales reports and analytics
+- System settings configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Cashier Interface  
+- Order creation and management
+- Menu browsing with categories
+- Payment processing
+- Customer management
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Barista Dashboard
+- Active orders queue
+- Order preparation tracking
+- Status updates
+- Kitchen workflow management
 
-## Learn More
+### Courier Interface
+- Delivery order management
+- Route optimization
+- Delivery status tracking
+- Completion reporting
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+├── components/          # Reusable components
+│   ├── MenuManager.js   # Menu item management
+│   ├── OrderPlacement.js # Order creation interface
+│   ├── ReportsManager.js # Analytics and reports
+│   └── StockManager.js  # Inventory management
+├── DashboardManager.js  # Manager dashboard
+├── DashboardCashier.js  # Cashier interface
+├── DashboardBarista.js  # Barista dashboard
+├── DashboardCourier.js  # Courier interface
+├── Login.js            # Authentication component
+└── App.js              # Main application component
+```
 
-### Code Splitting
+## API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The frontend communicates with the Flask backend via REST API:
+- **Base URL**: `REACT_APP_API_URL` environment variable
+- **Authentication**: JWT tokens in Authorization header
+- **Data Format**: JSON requests/responses
 
-### Analyzing the Bundle Size
+### Key API Endpoints
+- `POST /api/v1/auth/login` - User authentication
+- `GET /api/v1/menu-items` - Fetch menu items
+- `POST /api/v1/orders` - Create new orders
+- `GET /api/v1/orders/active` - Get active orders
+- `PUT /api/v1/orders/{id}/status` - Update order status
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Development Guidelines
 
-### Making a Progressive Web App
+### Code Style
+- Use functional components with hooks
+- Follow Material-UI design patterns
+- Implement responsive design principles
+- Use ESLint configuration for code consistency
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### State Management
+- React hooks (useState, useEffect, useContext)
+- Local component state for UI state
+- API calls with proper error handling
 
-### Advanced Configuration
+### Testing
+- Jest and React Testing Library
+- Component unit tests
+- Integration tests for key workflows
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## PWA Features
 
-### Deployment
+- **Service Worker**: Offline capability and caching
+- **Manifest**: App installation support
+- **Responsive Design**: Mobile-first approach
+- **Performance**: Optimized loading and rendering
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Security
 
-### `npm run build` fails to minify
+- JWT token validation
+- Role-based UI rendering
+- Secure API communication
+- Input validation and sanitization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Deployment
+
+### Production Build
+```bash
+npm run build
+```
+
+### Static Hosting
+Deploy the `build/` folder to any static hosting service:
+- Nginx
+- Apache
+- Netlify  
+- Vercel
+- AWS S3 + CloudFront
+
+### Environment Variables
+Configure production environment:
+```
+REACT_APP_API_URL=https://your-api-domain.com
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Build Warnings**
+- Unused variables: Remove or prefix with underscore
+- Missing dependencies: Add to useEffect dependency arrays
+- ESLint errors: Follow the suggested fixes
+
+**API Connection Issues**
+- Verify REACT_APP_API_URL is correct
+- Check CORS configuration on backend
+- Ensure backend is running and accessible
+
+**Authentication Problems**  
+- Clear localStorage and reload
+- Check token expiration
+- Verify backend JWT configuration
+
+## Browser Support
+
+- Chrome/Chromium 80+
+- Firefox 75+
+- Safari 13+
+- Edge 80+
+
+## Contributing
+
+1. Follow the existing code structure
+2. Add tests for new components
+3. Update documentation as needed
+4. Follow Material-UI design guidelines
+5. Ensure responsive design compliance
+
+For more details, see the main project README in the repository root.
