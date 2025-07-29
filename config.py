@@ -7,8 +7,8 @@ load_dotenv(os.path.join(basedir, ".env"))
 
 class Config:
     """Base configuration with environment-based defaults."""
-    SECRET_KEY = os.getenv("SECRET_KEY", None)
-    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", None)
+    SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key-change-in-production-123")
+    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "dev-jwt-secret-key-change-in-production-456")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", f"sqlite:///{os.path.join(basedir, 'pos_system_v01.db')}")
 

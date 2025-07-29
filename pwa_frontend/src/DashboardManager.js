@@ -4,13 +4,14 @@ import CategoryManager from './components/CategoryManager';
 import StockManager from './components/StockManager';
 import DiscountManager from './components/DiscountManager';
 import ReportsManager from './components/ReportsManager';
+import RealtimeDashboard from './components/RealtimeDashboard';
 import { 
   Tabs, Tab, Box, AppBar, Paper, Typography, Button, Container, Avatar,
   Switch, FormControlLabel, Grid, Card, CardContent, TextField, Snackbar, Alert, CircularProgress
 } from '@mui/material';
 import { 
   MenuBook, Category, Inventory, LocalOffer, Assessment, Settings, 
-  Logout, LightMode, DarkMode 
+  Logout, LightMode, DarkMode, Dashboard
 } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -163,6 +164,7 @@ function DashboardManager({ user, onLogout }) {
   };
 
   const tabs = [
+    { label: "Real-time Dashboard", icon: <Dashboard /> },
     { label: "Menu Items", icon: <MenuBook /> },
     { label: "Categories", icon: <Category /> },
     { label: "Stock", icon: <Inventory /> },
@@ -229,12 +231,13 @@ function DashboardManager({ user, onLogout }) {
                     </AppBar>
                     
                     <Box sx={{ p: 3, minHeight: '60vh' }}>
-                        {tab === 0 && <MenuManager />}
-                        {tab === 1 && <CategoryManager />}
-                        {tab === 2 && <StockManager />}
-                        {tab === 3 && <DiscountManager />}
-                        {tab === 4 && <ReportsManager />}
-                        {tab === 5 && <SystemSettingsTab toggleTheme={toggleTheme} isDarkMode={isDarkMode} />}
+                        {tab === 0 && <RealtimeDashboard />}
+                        {tab === 1 && <MenuManager />}
+                        {tab === 2 && <CategoryManager />}
+                        {tab === 3 && <StockManager />}
+                        {tab === 4 && <DiscountManager />}
+                        {tab === 5 && <ReportsManager />}
+                        {tab === 6 && <SystemSettingsTab toggleTheme={toggleTheme} isDarkMode={isDarkMode} />}
                     </Box>
                 </Paper>
             </Box>
