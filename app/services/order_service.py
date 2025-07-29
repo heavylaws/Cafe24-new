@@ -1,7 +1,8 @@
 # app/services/order_service.py
-from app.models import db, MenuItem, MenuItemOptionChoice, SystemSettings
-from app.utils.helpers import calculate_lbp_price, get_current_exchange_rate
 from decimal import Decimal
+
+from app.models import MenuItem, MenuItemOptionChoice, SystemSettings, db
+from app.utils.helpers import calculate_lbp_price, get_current_exchange_rate
 
 # For v0.1, much of the order creation logic is currently in the order_routes.py for simplicity.
 # As the application grows, this service layer would handle more complex business logic
@@ -13,6 +14,7 @@ from decimal import Decimal
 # - Interacting with potential third-party services (e.g., delivery APIs)
 
 # Example of how price calculation could be refactored here:
+
 
 def calculate_order_item_details(menu_item_id, quantity, chosen_option_choice_id=None):
     """
@@ -28,16 +30,20 @@ def calculate_order_item_details(menu_item_id, quantity, chosen_option_choice_id
         raise ValueError("Quantity must be a positive integer.")
 
     unit_price_usd = menu_item.base_price_usd
-    actual_chosen_option_name = None # For clarity in return value
+    actual_chosen_option_name = None  # For clarity in return value
 
     if chosen_option_choice_id is not None:
         option_choice = MenuItemOptionChoice.query.get(chosen_option_choice_id)
         if not option_choice or option_choice.option_type.menu_item_id != menu_item.id:
-            raise ValueError(f"Invalid option choice ID {chosen_option_choice_id} for item {menu_item.name}")
+            raise ValueError(
+                f"Invalid option choice ID {chosen_option_choice_id} for item {menu_item.name}"
+            )
         unit_price_usd = option_choice.price_usd
         actual_chosen_option_name = option_choice.choice_name
 
-    exchange_rate = get_current_exchange_rate() # Assumes this helper is available and configured
+    exchange_rate = (
+        get_current_exchange_rate()
+    )  # Assumes this helper is available and configured
 
     unit_price_lbp_rounded = calculate_lbp_price(unit_price_usd, exchange_rate)
 
@@ -56,8 +62,9 @@ def calculate_order_item_details(menu_item_id, quantity, chosen_option_choice_id
         "unit_price_lbp_rounded_at_order": unit_price_lbp_rounded,
         "line_total_usd_at_order": line_total_usd,
         "line_total_lbp_rounded_at_order": line_total_lbp_rounded,
-        "exchange_rate_at_calculation": exchange_rate # Good to log for auditing
+        "exchange_rate_at_calculation": exchange_rate,  # Good to log for auditing
     }
+
 
 def calculate_final_order_totals(order_items_details_list, exchange_rate=None):
     """
@@ -67,13 +74,13 @@ def calculate_final_order_totals(order_items_details_list, exchange_rate=None):
     if exchange_rate is None:
         exchange_rate = get_current_exchange_rate()
 
-    grand_total_usd = Decimal('0.00')
+    grand_total_usd = Decimal("0.00")
     # For LBP, sum the already calculated line_total_lbp_rounded or sum unrounded USD and round once at the end.
     # The current create_order route rounds the final sum of USD. Let's replicate that for consistency.
-    grand_total_lbp_unrounded_from_usd_sum = Decimal('0.00')
+    grand_total_lbp_unrounded_from_usd_sum = Decimal("0.00")
 
     for item_detail in order_items_details_list:
-        grand_total_usd += item_detail['line_total_usd_at_order']
+        grand_total_usd += item_detail["line_total_usd_at_order"]
         # To be consistent with current order_routes, we sum USD and then convert/round.
         # Alternatively, one could sum `line_total_lbp_rounded_at_order` but that might lead to minor
         # discrepancies compared to summing USD then converting/rounding once.
@@ -82,10 +89,10 @@ def calculate_final_order_totals(order_items_details_list, exchange_rate=None):
 
     return {
         "final_total_usd": grand_total_usd,
-        "final_total_lbp_rounded": final_total_lbp_rounded
+        "final_total_lbp_rounded": final_total_lbp_rounded,
     }
+
 
 # For v0.1, this service file can remain minimal or be expanded as logic is refactored
 # out of the route handlers. The example functions above show a potential direction.
 pass
-

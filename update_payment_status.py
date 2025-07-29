@@ -6,16 +6,16 @@ existing records with appropriate status values.
 import os
 import sys
 import traceback
-from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
 
 # Load environment variables
 load_dotenv()
 
 
 def get_database_url():
-    """Get database URL from environment or use default."""
-    return os.getenv('DATABASE_URL', 'sqlite:///instance/pos_system_v01.db')
+    """Get database URL from environment or use default"""
+    return os.getenv("DATABASE_URL", "sqlite:///instance/pos_system_v01.db")
 
 
 def update_database():
@@ -34,26 +34,34 @@ def update_database():
                 ).fetchall()
                 column_names = [col[1] for col in columns_result]
 
-                if 'payment_status' in column_names:
+                if "payment_status" in column_names:
                     print("Payment status column already exists. No changes needed.")
                     return
 
                 # 2. Add the column directly to the existing table
                 print("Adding payment_status column...")
-                connection.execute(text("""
-                    ALTER TABLE orders
-                    ADD COLUMN payment_status TEXT
-                    DEFAULT 'pending'
+                connection.execute(
+                    text(
+                        """
+                    ALTER TABLE orders 
+                    ADD COLUMN payment_status TEXT 
+                    DEFAULT 'pending' 
                     CHECK (payment_status IN ('pending', 'paid', 'refunded', 'failed', 'partially_refunded'));
-                """))
+                """
+                    )
+                )
 
                 # 3. Update payment status for existing orders
                 print("Updating payment statuses...")
-                connection.execute(text("""
-                    UPDATE orders
-                    SET payment_status = 'paid'
+                connection.execute(
+                    text(
+                        """
+                    UPDATE orders 
+                    SET payment_status = 'paid' 
                     WHERE status IN ('completed', 'paid_waiting_preparation', 'preparing', 'ready_for_pickup');
-                """))
+                """
+                    )
+                )
 
                 print("Database update completed successfully!")
 
