@@ -9,6 +9,11 @@ from dotenv import load_dotenv
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, ".env"))
 
+# Load enhancement configuration
+enhancement_env_path = os.path.join(basedir, ".env.enhancement")
+if os.path.exists(enhancement_env_path):
+    load_dotenv(enhancement_env_path)
+
 class Config:
     """Base configuration with environment-based defaults."""
 
@@ -23,6 +28,31 @@ class Config:
     PRIMARY_CURRENCY_CODE = os.getenv("PRIMARY_CURRENCY_CODE", "LBP")
     SECONDARY_CURRENCY_CODE = os.getenv("SECONDARY_CURRENCY_CODE", "USD")
     LBP_ROUNDING_FACTOR = int(os.getenv("LBP_ROUNDING_FACTOR", "5000"))
+
+    # Enhancement Features Configuration
+    # Phase 1: Analytics & Reporting
+    ANALYTICS_ENABLED = os.getenv("ANALYTICS_ENABLED", "false").lower() == "true"
+    ML_FORECASTING = os.getenv("ML_FORECASTING", "false").lower() == "true"
+    CUSTOM_DASHBOARDS = os.getenv("CUSTOM_DASHBOARDS", "false").lower() == "true"
+    AUTOMATED_REPORTS = os.getenv("AUTOMATED_REPORTS", "false").lower() == "true"
+    
+    # Phase 2: Mobile & Omnichannel
+    PWA_OFFLINE = os.getenv("PWA_OFFLINE", "false").lower() == "true"
+    MOBILE_PAYMENTS = os.getenv("MOBILE_PAYMENTS", "false").lower() == "true"
+    QR_ORDERING = os.getenv("QR_ORDERING", "false").lower() == "true"
+    SOCIAL_ORDERING = os.getenv("SOCIAL_ORDERING", "false").lower() == "true"
+    
+    # Phase 3: AI & Automation
+    CHATBOT_ENABLED = os.getenv("CHATBOT_ENABLED", "false").lower() == "true"
+    AI_RECOMMENDATIONS = os.getenv("AI_RECOMMENDATIONS", "false").lower() == "true"
+    AUTO_INVENTORY = os.getenv("AUTO_INVENTORY", "false").lower() == "true"
+    DYNAMIC_PRICING = os.getenv("DYNAMIC_PRICING", "false").lower() == "true"
+    
+    # Phase 4: Advanced Integrations
+    ACCOUNTING_SYNC = os.getenv("ACCOUNTING_SYNC", "false").lower() == "true"
+    CRM_INTEGRATION = os.getenv("CRM_INTEGRATION", "false").lower() == "true"
+    PUBLIC_API = os.getenv("PUBLIC_API", "false").lower() == "true"
+    WEBHOOK_SYSTEM = os.getenv("WEBHOOK_SYSTEM", "false").lower() == "true"
 
     @staticmethod
     def warn_if_default_keys():
