@@ -1,3 +1,10 @@
+"""
+Database models for the Cafe24 POS system.
+
+This module defines all SQLAlchemy models used in the application including
+users, menu items, orders, and system settings.
+"""
+
 import datetime
 import enum
 from typing import Optional

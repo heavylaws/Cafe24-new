@@ -1,8 +1,8 @@
 """
 Cafe24 POS System - Marshmallow Schemas
 
-This module defines all Marshmallow schemas for serialization and deserialization
-of API requests and responses in the Cafe24 POS system.
+This module defines schemas for all models used in the Cafe24 POS system,
+providing automatic serialization/deserialization for API endpoints.
 """
 
 from flask_marshmallow import Marshmallow

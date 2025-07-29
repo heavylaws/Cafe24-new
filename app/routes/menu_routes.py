@@ -1,3 +1,5 @@
+"""Menu-related routes for the Cafe24 POS system."""
+
 import datetime
 
 from flask import Blueprint, current_app, jsonify, request
@@ -20,7 +22,6 @@ from app.utils.decorators import roles_required
 from app.utils.helpers import get_current_exchange_rate
 
 menu_bp = Blueprint("menu_bp", __name__)
-
 
 # --- System Settings for Dual Currency ---
 @menu_bp.route("/system-settings", methods=["GET"])
@@ -426,7 +427,6 @@ def add_menu_item_option(item_id):
 
 
 # --- SHIM: Register /api/v1/menu-items/<id>/options at top-level for frontend compatibility ---
-
 
 def register_menu_item_options_shim(app):
     app.add_url_rule(

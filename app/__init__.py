@@ -1,7 +1,8 @@
 """
 Cafe24 POS System - Flask Application Factory
 
-This module contains the main Flask application factory for the Cafe24 Point of Sale system.
+This module provides the create_app function that initializes the Flask application
+with all necessary extensions, blueprints, and configuration.
 It configures the Flask app, initializes extensions, and registers all route blueprints.
 """
 
@@ -40,6 +41,7 @@ def create_app(config_name="development"):
     migrate.init_app(app, db, render_as_batch=True)
     jwt.init_app(app)
     socketio.init_app(app, cors_allowed_origins="*", async_mode='threading')
+    
     # Basic CORS
     CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
 
@@ -69,13 +71,8 @@ def create_app(config_name="development"):
 
     # System settings endpoint
     from app.routes.menu_routes import get_system_settings, update_system_settings
-
-    app.add_url_rule(
-        "/api/v1/system-settings", view_func=get_system_settings, methods=["GET"]
-    )
-    app.add_url_rule(
-        "/api/v1/system-settings", view_func=update_system_settings, methods=["PUT"]
-    )
+    app.add_url_rule('/api/v1/system-settings', view_func=get_system_settings, methods=['GET'])
+    app.add_url_rule('/api/v1/system-settings', view_func=update_system_settings, methods=['PUT'])
 
     # Health check
     @app.route("/health")

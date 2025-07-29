@@ -1,3 +1,10 @@
+"""
+Database initialization script for the Cafe24 POS system.
+
+This script creates the database tables and sets up initial data including
+default users, system settings, and sample menu items.
+"""
+
 import datetime
 import os
 
@@ -26,8 +33,8 @@ from app.models import (
     UserRole,
 )
 
-
 def init_database():
+    """Initialize database with tables and default data."""
     app = create_app()
     with app.app_context():
         # Drop all tables and recreate them

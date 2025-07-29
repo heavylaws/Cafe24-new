@@ -1,7 +1,15 @@
+"""
+Main entry point for the Cafe24 POS Flask application.
+
+This module sets up the Flask application with CLI commands for database management
+and provides the development server entry point.
+"""
 import os
 import logging
 
 from flask import request
+from flask_migrate import Migrate, upgrade
+
 from app import create_app, db, socketio
 
 # Set up basic logging to console
@@ -59,14 +67,10 @@ def seed_db_command():
 @app.cli.command("migrate-db")
 def migrate_db_command():
     """Migrate database schema."""
-    from flask_migrate import Migrate, upgrade
-    migrate = Migrate(app, db)
+    Migrate(app, db)
     upgrade()
 
 if __name__ == "__main__":
-    # When running directly (python run.py), it will use the Werkzeug development server.
-    # For production, use a WSGI server like Gunicorn
-
     # Log all requests and errors
     @app.before_request
     def log_request_info():

@@ -1,3 +1,5 @@
+"""Authentication routes for the Cafe24 POS system."""
+
 from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
@@ -11,6 +13,7 @@ user_schema = UserSchema()
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
+    """Authenticate user and return access token."""
     data = request.get_json()
     if not data or not data.get("username") or not data.get("password"):
         return jsonify({"message": "Username and password required"}), 400

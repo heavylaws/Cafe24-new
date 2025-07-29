@@ -1,3 +1,5 @@
+"""Order management routes for the Cafe24 POS system."""
+
 import datetime
 from decimal import Decimal
 
@@ -25,7 +27,6 @@ from app.utils.helpers import (
 )
 
 order_bp = Blueprint("order_bp", __name__)
-
 
 def check_and_deduct_stock(order_items_data, user_id):
     """
@@ -96,7 +97,6 @@ def check_and_deduct_stock(order_items_data, user_id):
         db.session.add(adjustment)
 
     return True
-
 
 @order_bp.route("", methods=["POST"])
 @jwt_required()
