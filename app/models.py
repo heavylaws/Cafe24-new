@@ -133,6 +133,15 @@ class MenuItem(db.Model):
         db.UniqueConstraint("category_id", "name", name="_category_item_name_uc"),
     )
 
+    def __init__(self, name: str, category_id: int, base_price_usd: float, description: Optional[str] = None, is_active: bool = True, image_url: Optional[str] = None, **kwargs):
+        super().__init__(**kwargs)
+        self.name = name
+        self.category_id = category_id
+        self.base_price_usd = base_price_usd
+        self.description = description
+        self.is_active = is_active
+        self.image_url = image_url
+
     def __repr__(self):
         """Return string representation of MenuItem."""
         return f"<MenuItem {self.name}>"
@@ -156,6 +165,13 @@ class MenuItemOption(db.Model):
         cascade="all, delete-orphan",
     )
 
+    def __init__(self, menu_item_id, name, is_required=False, sort_order=0):
+        self.menu_item_id = menu_item_id
+        self.name = name
+        self.is_required = is_required
+        self.sort_order = sort_order
+
+
 class MenuItemOptionChoice(db.Model):
     __tablename__ = "menuitemoptionchoices"
     id = db.Column(db.Integer, primary_key=True)
@@ -170,6 +186,14 @@ class MenuItemOptionChoice(db.Model):
     updated_at = db.Column(
         db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow
     )
+
+    def __init__(self, option_id, name, price_delta=0.00, is_default=False, sort_order=0):
+        self.option_id = option_id
+        self.name = name
+        self.price_delta = price_delta
+        self.is_default = is_default
+        self.sort_order = sort_order
+
 
 class Ingredient(db.Model):
     __tablename__ = "ingredients"
@@ -287,6 +311,11 @@ class SystemSettings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     setting_key = db.Column(db.String(255), unique=True, nullable=False)
     setting_value = db.Column(db.String(255), nullable=False)
+
+    def __init__(self, setting_key: str, setting_value: str, **kwargs):
+        super().__init__(**kwargs)
+        self.setting_key = setting_key
+        self.setting_value = setting_value
 
 class StockAdjustment(db.Model):
     __tablename__ = "stockadjustments"

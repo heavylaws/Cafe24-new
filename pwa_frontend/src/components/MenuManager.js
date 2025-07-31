@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import MenuItemOptionsManager from './MenuItemOptionsManager';
+import EnhancedMenuOptionsManager from './EnhancedMenuOptionsManager';
 import RecipeManager from './RecipeManager';
 import {
   Stepper, Step, StepLabel, Button, TextField, Select, MenuItem as MuiMenuItem,
@@ -85,69 +85,6 @@ function MenuManager() {
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
   };
 
-  const handleSave = async (e) => {
-    e.preventDefault();
-    
-    // Convert string numbers to proper types
-    const dataToSend = {
-      ...formData,
-      category_id: formData.category_id ? parseInt(formData.category_id, 10) : null,
-      base_price_usd: formData.base_price_usd ? parseFloat(formData.base_price_usd) : 0,
-      is_active: !!formData.is_active
-    };
-
-    // Client-side validation
-    if (!dataToSend.name || !dataToSend.name.trim()) {
-      setError('Menu item name is required');
-      return;
-    }
-
-    if (!dataToSend.category_id) {
-      setError('Please select a category');
-      return;
-    }
-
-    if (isNaN(dataToSend.base_price_usd) || dataToSend.base_price_usd < 0) {
-      setError('Please enter a valid price');
-      return;
-    }
-
-    setLoading(true);
-    setError('');
-    setSuccess('');
-
-    try {
-      const url = editingId 
-        ? `${API_BASE_URL}/api/v1/menu/items/${editingId}`
-        : `${API_BASE_URL}/api/v1/menu/items`;
-      
-      const method = editingId ? 'PUT' : 'POST';
-      
-      const response = await axios({
-        method,
-        url,
-        data: dataToSend,
-        headers: {
-          'Content-Type': 'application/json',
-          ...getAuthHeader()
-        }
-      });
-
-      setSuccess(editingId ? 'Menu item updated successfully!' : 'Menu item created successfully!');
-      fetchData();
-      
-      if (!editingId) {
-        handleReset();
-      }
-    } catch (err) {
-      const errorMsg = err.response?.data?.message || 'Failed to save menu item';
-      setError(errorMsg);
-      console.error('Error saving menu item:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleNext = async () => {
     if (activeStep === 0) {
       if (!formData.name.trim() || !formData.base_price_usd || !formData.category_id) {
@@ -156,7 +93,7 @@ function MenuManager() {
       }
       try {
         const payload = { ...formData, base_price_usd: parseFloat(formData.base_price_usd) };
-        const url = editingId ? `${API_BASE_URL}/api/v1/menu/items/${editingId}` : `${API_BASE_URL}/api/v1/menu/items`;
+        const url = editingId ? `${API_BASE_URL}/api/v1/menu-items/${editingId}` : `${API_BASE_URL}/api/v1/menu-items`;
         const method = editingId ? 'put' : 'post';
         
         const res = await axios[method](url, payload, { headers: getAuthHeader() });
@@ -210,7 +147,7 @@ function MenuManager() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this menu item?')) {
       try {
-        await axios.delete(`${API_BASE_URL}/api/v1/menu/items/${id}`, { headers: getAuthHeader() });
+        await axios.delete(`${API_BASE_URL}/api/v1/menu-items/${id}`, { headers: getAuthHeader() });
         setSuccess('Menu item deleted!');
         fetchData();
       } catch (err) {
@@ -222,7 +159,7 @@ function MenuManager() {
   const toggleAvailability = async (item) => {
     try {
           const updatedItem = { ...item, is_active: !item.is_active };
-          await axios.put(`${API_BASE_URL}/api/v1/menu/items/${item.id}`, updatedItem, { headers: getAuthHeader() });
+          await axios.put(`${API_BASE_URL}/api/v1/menu-items/${item.id}`, updatedItem, { headers: getAuthHeader() });
           setSuccess(`Item availability updated!`);
           fetchData();
       } catch(err) {
@@ -302,7 +239,7 @@ function MenuManager() {
           {activeStep === 2 && (
             <Box>
               <Typography variant="h6" sx={{ mb: 2 }}>Add Options & Choices</Typography>
-              <MenuItemOptionsManager menuItemId={createdItemId} />
+              <EnhancedMenuOptionsManager menuItemId={createdItemId} />
             </Box>
           )}
           
@@ -329,30 +266,33 @@ function MenuManager() {
         </Paper>
       )}
 
-      <Grid container spacing={3}>
-        {menuItems.map(item => (
-          <Grid xs={12} sm={6} md={4} key={item.id}>
-            <Card elevation={2} sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2 }}>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>{item.image_url && `${item.image_url} `}{item.name}</Typography>
-                    <Chip label={item.is_active ? 'Active' : 'Inactive'} color={item.is_active ? 'success' : 'default'} size="small"/>
-                </Box>
-                <Typography color="text.secondary" sx={{ mb: 1 }}>{(() => { const cat = categories.find(c => c.id === item.category_id); if(!cat) return ''; const parts = cat.displayName.split('>'); return parts[parts.length-1].trim(); })()}</Typography>
-                <Typography variant="body2" sx={{ mb: 2 }}>{item.description}</Typography>
-                <Typography variant="h5" color="primary" sx={{ fontWeight: 'bold' }}>${(parseFloat(item.base_price_usd) || 0).toFixed(2)}</Typography>
-              </CardContent>
-              <CardActions sx={{ justifyContent: 'space-between', px: 2, pb: 2 }}>
-                <FormControlLabel control={<Switch checked={item.is_active} onChange={() => toggleAvailability(item)} />} label="Active" />
-                <Stack direction="row">
-                    <IconButton onClick={() => handleEdit(item)}><Edit /></IconButton>
-                    <IconButton onClick={() => handleDelete(item.id)} color="error"><Delete /></IconButton>
-                </Stack>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+      <div className="menu-items-container">
+        <h3>Menu Items</h3>
+        <Grid container spacing={3}>
+          {menuItems.map(item => (
+            <Grid xs={12} sm={6} md={4} key={item.id}>
+              <Card elevation={2} sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2 }}>
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>{item.image_url && `${item.image_url} `}{item.name}</Typography>
+                      <Chip label={item.is_active ? 'Active' : 'Inactive'} color={item.is_active ? 'success' : 'default'} size="small"/>
+                  </Box>
+                  <Typography color="text.secondary" sx={{ mb: 1 }}>{(() => { const cat = categories.find(c => c.id === item.category_id); if(!cat) return ''; const parts = cat.displayName.split('>'); return parts[parts.length-1].trim(); })()}</Typography>
+                  <Typography variant="body2" sx={{ mb: 2 }}>{item.description}</Typography>
+                  <Typography variant="h5" color="primary" sx={{ fontWeight: 'bold' }}>${(parseFloat(item.base_price_usd) || 0).toFixed(2)}</Typography>
+                </CardContent>
+                <CardActions sx={{ justifyContent: 'space-between', px: 2, pb: 2 }}>
+                  <FormControlLabel control={<Switch checked={item.is_active} onChange={() => toggleAvailability(item)} />} label="Active" />
+                  <Stack direction="row">
+                      <IconButton onClick={() => handleEdit(item)}><Edit /></IconButton>
+                      <IconButton onClick={() => handleDelete(item.id)} color="error"><Delete /></IconButton>
+                  </Stack>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </Box>
   );
 }

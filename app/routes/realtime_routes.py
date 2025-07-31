@@ -57,6 +57,9 @@ def handle_connect():
 
         except Exception as e:
             logging.error(f"JWT verification failed for WebSocket: {e}")
+            emit('error', {'message': 'JWT expired or invalid'})
+            from flask_socketio import disconnect
+            disconnect()
             return False
 
     except Exception as e:
@@ -72,7 +75,7 @@ def handle_disconnect():
         del connected_users[request.sid]
 
 @socketio.on('subscribe_to_analytics')
-def handle_analytics_subscription(data):
+def handle_analytics_subscription(data=None):
     """Handle subscription to real-time analytics"""
     if request.sid not in connected_users:
         emit('error', {'message': 'Not authenticated'})
@@ -90,7 +93,7 @@ def handle_analytics_subscription(data):
     emit_real_time_dashboard_data()
 
 @socketio.on('subscribe_to_orders')
-def handle_orders_subscription(data):
+def handle_orders_subscription(data=None):
     """Handle subscription to real-time order updates"""
     if request.sid not in connected_users:
         emit('error', {'message': 'Not authenticated'})

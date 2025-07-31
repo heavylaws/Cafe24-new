@@ -9,7 +9,7 @@ It configures the Flask app, initializes extensions, and registers all route blu
 import logging
 import os
 
-from flask import Flask, request
+from flask import Flask, request, current_app
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
@@ -43,23 +43,39 @@ def create_app(config_name="development"):
     socketio.init_app(app, cors_allowed_origins="*", async_mode='threading')
     
     # Basic CORS
-    CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})
+    CORS(app, supports_credentials=True, resources={
+        r"/api/*": {
+            "origins": "*",
+            "allow_headers": ["Content-Type", "Authorization"],
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+        }
+    })
+
+    # Register menu-items blueprint under both new and legacy prefixes
 
     # Register blueprints
     from app.routes.auth_routes import auth_bp
     from app.routes.category_routes import category_bp
     from app.routes.discount_routes import discount_bp
     from app.routes.ingredient_routes import ingredient_bp
-    from app.routes.menu_routes import menu_bp, register_menu_item_options_shim
+    from app.routes.menu_routes import menu_bp, menu_items_bp
     from app.routes.order_routes import order_bp
     from app.routes.recipe_routes import recipe_bp
     from app.routes.report_routes import report_bp
     from app.routes.stock_routes import stock_bp
     from app.routes.realtime_routes import realtime_bp
-    from app.routes.menu_routes import register_menu_item_options_shim
 
+    # Standard endpoints
+    # Core API endpoints
     app.register_blueprint(auth_bp, url_prefix='/api/v1/auth')
     app.register_blueprint(menu_bp, url_prefix='/api/v1/menu')
+    app.register_blueprint(menu_items_bp, url_prefix='/api/v1/menu-items')
+    # Legacy paths
+    app.register_blueprint(
+        menu_items_bp,
+        url_prefix='/api/v1/menu/items',
+        name_prefix='legacy_'
+    )
     app.register_blueprint(order_bp, url_prefix='/api/v1/orders')
     app.register_blueprint(report_bp, url_prefix='/api/v1/reports')
     app.register_blueprint(discount_bp, url_prefix='/api/v1')
@@ -68,6 +84,7 @@ def create_app(config_name="development"):
     app.register_blueprint(category_bp, url_prefix='/api/v1')
     app.register_blueprint(recipe_bp, url_prefix='/api/v1/menu')
     app.register_blueprint(realtime_bp, url_prefix='/api/v1/realtime')
+
 
     # System settings endpoint
     from app.routes.menu_routes import get_system_settings, update_system_settings
@@ -85,7 +102,5 @@ def create_app(config_name="development"):
     def log_request():
         """Log incoming requests for debugging and monitoring."""
         logging.info("%s %s", request.method, request.url)
-
-    register_menu_item_options_shim(app)
 
     return app

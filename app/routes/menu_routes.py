@@ -7,6 +7,7 @@ from flask_jwt_extended import jwt_required
 from marshmallow import ValidationError
 from sqlalchemy.orm import joinedload
 
+from app import db
 from app.models import (
     Category,
     Ingredient,
@@ -15,13 +16,43 @@ from app.models import (
     MenuItemOptionChoice,
     Recipe,
     SystemSettings,
-    db,
 )
 from app.schemas import CreateMenuItemSchema, MenuItemSchema
 from app.utils.decorators import roles_required
 from app.utils.helpers import get_current_exchange_rate
 
 menu_bp = Blueprint("menu_bp", __name__)
+menu_items_bp = Blueprint("menu_items_bp", __name__)
+
+@menu_items_bp.before_request
+def handle_options():
+    """Handle OPTIONS requests for all menu_items_bp routes."""
+    if request.method == "OPTIONS":
+        # Get the URL path components
+        path_parts = request.path.strip('/').split('/')
+        # Extract the path parameters (like item_id)
+        path_params = [p for p in path_parts if p.isdigit()]
+        
+        # Reconstruct the route pattern
+        route_pattern = request.path
+        for param in path_params:
+            route_pattern = route_pattern.replace(f"/{param}", "/<id>")
+            
+        # Define allowed methods based on the route pattern
+        if route_pattern.endswith("/<id>"):
+            methods = ["GET", "PUT", "DELETE", "OPTIONS"]
+        else:
+            methods = ["GET", "POST", "OPTIONS"]
+            
+        return (
+            "",
+            204,
+            {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": ",".join(methods),
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+            },
+        )
 
 # --- System Settings for Dual Currency ---
 @menu_bp.route("/system-settings", methods=["GET"])
@@ -138,7 +169,7 @@ def get_active_menu_for_courier():
 
 
 # --- Menu Item Management ---
-@menu_bp.route("/items", methods=["POST"])
+@menu_items_bp.route("", methods=["POST", "OPTIONS"])
 @jwt_required()
 @roles_required(["manager"])
 def create_menu_item():
@@ -198,26 +229,39 @@ def create_menu_item():
             current_app.logger.error(f"Validation error: {err.messages}")
             return jsonify({"message": "Validation error", "errors": err.messages}), 400
 
+        if not isinstance(validated_data, dict):
+            return jsonify({"message": "Internal server error: Invalid data type after validation"}), 500
+
         # Check if category exists
-        category = Category.query.get(validated_data.get("category_id"))
+        category_id = validated_data.get("category_id")
+        if not category_id:
+            return jsonify({"message": "category_id is required"}), 400
+
+        category = db.session.get(Category, category_id)
         if not category:
             return (
                 jsonify(
                     {
                         "message": "Category not found",
-                        "category_id": validated_data.get("category_id"),
+                        "category_id": category_id,
                     }
                 ),
                 404,
             )
 
         # Create new menu item with validated data
+        name = validated_data.get("name")
+        base_price_usd = validated_data.get("base_price_usd")
+
+        if not name or not base_price_usd:
+            return jsonify({"message": "name and base_price_usd are required"}), 400
+
         menu_item = MenuItem(
-            name=validated_data["name"].strip(),
-            category_id=validated_data["category_id"],
-            base_price_usd=validated_data["base_price_usd"],
-            description=validated_data.get("description", "").strip(),
-            is_active=validated_data.get("is_active", True),
+            name=str(name).strip(),
+            category_id=int(category_id),
+            base_price_usd=base_price_usd,
+            description=str(validated_data.get("description", "")).strip(),
+            is_active=bool(validated_data.get("is_active", True)),
         )
 
         db.session.add(menu_item)
@@ -240,7 +284,7 @@ def create_menu_item():
         return jsonify({"message": "Failed to create menu item", "error": str(e)}), 500
 
 
-@menu_bp.route("/items", methods=["GET"])
+@menu_items_bp.route("", methods=["GET"])
 @jwt_required()
 @roles_required(["manager"])
 def list_menu_items():
@@ -256,15 +300,15 @@ def list_menu_items():
         return jsonify({"message": "Failed to fetch menu items"}), 500
 
 
-@menu_bp.route("/items/<int:item_id>", methods=["GET"])
+@menu_items_bp.route("/<int:item_id>", methods=["GET"])
 @jwt_required()
 @roles_required(["manager"])
 def get_menu_item(item_id):
     """Get a specific menu item by ID."""
     try:
-        item = MenuItem.query.options(
-            joinedload(MenuItem.options).joinedload(MenuItemOption.choices)
-        ).get_or_404(item_id)
+        item = db.session.get(MenuItem, item_id)
+        if not item:
+            return jsonify({"message": "Menu item not found"}), 404
 
         menu_item_schema = MenuItemSchema()
         return jsonify(menu_item_schema.dump(item))
@@ -273,13 +317,15 @@ def get_menu_item(item_id):
         return jsonify({"message": "Failed to fetch menu item"}), 500
 
 
-@menu_bp.route("/items/<int:item_id>", methods=["PUT"])
+@menu_items_bp.route("/<int:item_id>", methods=["PUT"])
 @jwt_required()
 @roles_required(["manager"])
 def update_menu_item(item_id):
     """Update a menu item."""
     try:
-        item = MenuItem.query.get_or_404(item_id)
+        item = db.session.get(MenuItem, item_id)
+        if not item:
+            return jsonify({"message": "Menu item not found"}), 404
         data = request.get_json()
 
         if not data:
@@ -288,30 +334,32 @@ def update_menu_item(item_id):
         # Log the incoming data for debugging
         current_app.logger.info(f"Updating menu item {item_id} with data: {data}")
 
-        # Validate input
-        try:
-            menu_item_schema = MenuItemSchema(partial=True)
-            validated_data = menu_item_schema.load(data)
-            # Ensure validated_data is a dict (Marshmallow may return a model instance)
-            if not isinstance(validated_data, dict):
-                validated_data = menu_item_schema.dump(validated_data)
-        except ValidationError as err:
-            current_app.logger.error(
-                f"Validation error updating menu item {item_id}: {err.messages}"
-            )
-            return jsonify({"message": "Validation error", "errors": err.messages}), 400
-
-        # Update fields
+        # Update only the fields that were actually provided in the request
         protected_fields = ["id", "created_at", "updated_at"]
         update_fields = []
-        for key, value in validated_data.items():
+        
+        # Get all the allowed fields from the model (not including relationships or computed fields)
+        allowed_fields = {
+            'category_id', 'name', 'description', 'base_price_usd', 'is_active', 'image_url'
+        }
+        
+        for key, value in data.items():
             if key in protected_fields:
+                current_app.logger.warning(f"Ignoring protected field in update: {key}")
                 continue
+            
+            if key not in allowed_fields:
+                current_app.logger.warning(f"Ignoring unknown field in update: {key}")
+                continue
+                
             if hasattr(item, key):
+                # Basic validation - check that required fields aren't being set to None
+                if key in ['category_id', 'base_price_usd'] and value is None:
+                    current_app.logger.warning(f"Ignoring attempt to set required field {key} to None")
+                    continue
+                    
                 setattr(item, key, value)
                 update_fields.append(key)
-            else:
-                current_app.logger.warning(f"Ignoring unknown field in update: {key}")
 
         if not update_fields:
             return jsonify({"message": "No valid fields provided for update"}), 400
@@ -336,13 +384,15 @@ def update_menu_item(item_id):
         return jsonify({"message": "Failed to update menu item", "error": str(e)}), 500
 
 
-@menu_bp.route("/items/<int:item_id>", methods=["DELETE"])
+@menu_items_bp.route("/<int:item_id>", methods=["DELETE"])
 @jwt_required()
 @roles_required(["manager"])
 def delete_menu_item(item_id):
     """Delete a menu item."""
     try:
-        item = MenuItem.query.get_or_404(item_id)
+        item = db.session.get(MenuItem, item_id)
+        if not item:
+            return jsonify({"message": "Menu item not found"}), 404
         db.session.delete(item)
         db.session.commit()
         return jsonify({"message": "Menu item deleted successfully"})
@@ -353,7 +403,7 @@ def delete_menu_item(item_id):
 
 
 # --- Menu Item Options Endpoints (for manager dashboard) ---
-@menu_bp.route("/menu-items/<int:item_id>/options", methods=["GET", "OPTIONS"])
+@menu_items_bp.route("/<int:item_id>/options", methods=["GET"])
 @jwt_required()
 @roles_required(["manager"])
 def get_menu_item_options(item_id):
@@ -364,18 +414,20 @@ def get_menu_item_options(item_id):
             204,
             {
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+                "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type,Authorization",
             },
         )
     try:
-        item = MenuItem.query.options(
-            joinedload(MenuItem.options).joinedload(MenuItemOption.choices)
-        ).get_or_404(item_id)
-        options = MenuItemOption.query.filter_by(menu_item_id=item_id).all()
+        item = db.session.get(MenuItem, item_id)
+        if not item:
+            return jsonify({"message": "Menu item not found"}), 404
+        
+        options = MenuItemOption.query.filter_by(menu_item_id=item_id).order_by(MenuItemOption.sort_order).all()
+        
         result = []
         for option in options:
-            choices = MenuItemOptionChoice.query.filter_by(option_id=option.id).all()
+            choices = MenuItemOptionChoice.query.filter_by(option_id=option.id).order_by(MenuItemOptionChoice.sort_order).all()
             result.append(
                 {
                     "id": option.id,
@@ -385,8 +437,8 @@ def get_menu_item_options(item_id):
                     "choices": [
                         {
                             "id": choice.id,
-                            "name": choice.name,
-                            "price_delta": choice.price_delta,
+                            "choice_name": choice.name,
+                            "price_modifier": float(choice.price_delta) if choice.price_delta is not None else 0.0,
                             "is_default": choice.is_default,
                             "sort_order": choice.sort_order,
                         }
@@ -397,45 +449,456 @@ def get_menu_item_options(item_id):
         return jsonify(result), 200
     except Exception as e:
         current_app.logger.error(
-            f"Error fetching options for menu item {item_id}: {str(e)}"
+            f"Error fetching options for menu item {item_id}: {str(e)}", exc_info=True
         )
         return jsonify({"message": "Failed to fetch options"}), 500
 
 
-@menu_bp.route("/menu-items/<int:item_id>/options", methods=["POST"])
+@menu_items_bp.route("/<int:item_id>/options", methods=["POST"])
 @jwt_required()
 @roles_required(["manager"])
 def add_menu_item_option(item_id):
-    """Add an option to a menu item."""
+    """Add an option to a menu item with optional choices.
+    
+    Expected JSON payload:
+    {
+        "name": "Size",  # Required: The name of the option (e.g., "Size", "Milk Type", "Temperature")
+        "is_required": true,  # Optional: Whether customers must select this option (default: false)
+        "sort_order": 1,  # Optional: Display order (lower numbers appear first, default: 0)
+        "choices": [  # Optional: Array of choices for this option
+            {
+                "choice_name": "Small",  # Required: Display name for the choice
+                "price_modifier": 0.00,  # Optional: Price adjustment in USD (default: 0.00)
+                "is_default": true,  # Optional: Whether this is the default selection (default: false)
+                "sort_order": 1  # Optional: Display order within the option (default: 0)
+            },
+            {
+                "choice_name": "Large", 
+                "price_modifier": 1.50, 
+                "is_default": false, 
+                "sort_order": 2
+            }
+        ]
+    }
+    """
     try:
         data = request.get_json()
+        
+        if not data:
+            return jsonify({"message": "No input data provided"}), 400
+            
+        # Validate required fields
+        if not data.get("name"):
+            return jsonify({"message": "Option name is required"}), 400
+            
+        # Verify menu item exists
+        menu_item = db.session.get(MenuItem, item_id)
+        if not menu_item:
+            return jsonify({"message": "Menu item not found"}), 404
+        
+        current_app.logger.info(f"Adding option to menu item {item_id}: {data}")
+        
+        # Create the option
         option = MenuItemOption(
             menu_item_id=item_id,
-            name=data.get("name"),
+            name=data.get("name").strip(),
             is_required=data.get("is_required", False),
             sort_order=data.get("sort_order", 0),
         )
         db.session.add(option)
+        db.session.flush()  # Get the option ID before creating choices
+        
+        # Add choices if provided
+        choices_data = data.get("choices", [])
+        created_choices = []
+        
+        # Validate that only one choice can be default
+        default_count = sum(1 for choice in choices_data if choice.get("is_default", False))
+        if default_count > 1:
+            return jsonify({"message": "Only one choice can be marked as default per option"}), 400
+        
+        for choice_data in choices_data:
+            if not choice_data.get("choice_name"):
+                return jsonify({"message": "Choice name is required for all choices"}), 400
+                
+            # Validate price_modifier is a valid number
+            price_modifier = choice_data.get("price_modifier", 0.00)
+            try:
+                price_modifier = float(price_modifier)
+            except (ValueError, TypeError):
+                return jsonify({"message": f"Invalid price_modifier '{price_modifier}' for choice '{choice_data.get('choice_name')}'. Must be a number."}), 400
+            
+            choice = MenuItemOptionChoice(
+                option_id=option.id,
+                name=choice_data.get("choice_name").strip(),
+                price_delta=price_modifier,
+                is_default=choice_data.get("is_default", False),
+                sort_order=choice_data.get("sort_order", 0),
+            )
+            db.session.add(choice)
+            created_choices.append({
+                "id": choice.id,
+                "choice_name": choice.name,
+                "price_modifier": float(choice.price_delta),
+                "is_default": choice.is_default,
+                "sort_order": choice.sort_order
+            })
+        
         db.session.commit()
-        return jsonify({"message": "Option added", "option_id": option.id}), 201
+        
+        result = {
+            "message": "Option added successfully",
+            "option": {
+                "id": option.id,
+                "name": option.name,
+                "is_required": option.is_required,
+                "sort_order": option.sort_order,
+                "choices": created_choices
+            }
+        }
+        
+        current_app.logger.info(f"Successfully created option {option.id} with {len(created_choices)} choices")
+        return jsonify(result), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"Error adding option for menu item {item_id}: {str(e)}", exc_info=True)
+        return jsonify({"message": "Failed to add option", "error": str(e)}), 500
+
+
+@menu_items_bp.route("/<int:item_id>/options/<int:option_id>/choices", methods=["POST"])
+@jwt_required()
+@roles_required(["manager"])
+def add_option_choice(item_id, option_id):
+    """Add a choice to an existing menu item option.
+    
+    Expected JSON payload:
+    {
+        "choice_name": "Medium",  # Required: Display name for the choice
+        "price_modifier": 0.75,  # Optional: Price adjustment in USD (default: 0.00)
+        "is_default": false,  # Optional: Whether this is the default selection (default: false)
+        "sort_order": 2  # Optional: Display order within the option (default: 0)
+    }
+    """
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({"message": "No input data provided"}), 400
+            
+        # Validate required fields
+        if not data.get("choice_name"):
+            return jsonify({"message": "Choice name is required"}), 400
+            
+        # Verify menu item and option exist
+        menu_item = db.session.get(MenuItem, item_id)
+        if not menu_item:
+            return jsonify({"message": "Menu item not found"}), 404
+        option = db.session.query(MenuItemOption).filter_by(id=option_id, menu_item_id=item_id).first()
+        if not option:
+            return jsonify({"message": "Option not found"}), 404
+        
+        # Validate price_modifier is a valid number
+        price_modifier = data.get("price_modifier", 0.00)
+        try:
+            price_modifier = float(price_modifier)
+        except (ValueError, TypeError):
+            return jsonify({"message": f"Invalid price_modifier '{price_modifier}'. Must be a number."}), 400
+        
+        # Check if setting as default and unset other defaults if needed
+        is_default = data.get("is_default", False)
+        if is_default:
+            # Unset any existing default choices for this option
+            existing_defaults = MenuItemOptionChoice.query.filter_by(option_id=option_id, is_default=True).all()
+            for existing_choice in existing_defaults:
+                existing_choice.is_default = False
+        
+        current_app.logger.info(f"Adding choice to option {option_id}: {data}")
+        
+        # Create the choice
+        choice = MenuItemOptionChoice(
+            option_id=option_id,
+            name=data.get("choice_name").strip(),
+            price_delta=price_modifier,
+            is_default=is_default,
+            sort_order=data.get("sort_order", 0),
+        )
+        db.session.add(choice)
+        db.session.commit()
+        
+        result = {
+            "message": "Choice added successfully",
+            "choice": {
+                "id": choice.id,
+                "choice_name": choice.name,
+                "price_modifier": float(choice.price_delta),
+                "is_default": choice.is_default,
+                "sort_order": choice.sort_order
+            }
+        }
+        
+        current_app.logger.info(f"Successfully created choice {choice.id} for option {option_id}")
+        return jsonify(result), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"Error adding choice to option {option_id}: {str(e)}", exc_info=True)
+        return jsonify({"message": "Failed to add choice", "error": str(e)}), 500
+
+
+@menu_items_bp.route("/<int:item_id>/options/<int:option_id>", methods=["PUT"])
+@jwt_required()
+@roles_required(["manager"])
+def update_menu_item_option(item_id, option_id):
+    """Update a menu item option.
+    
+    Expected JSON payload:
+    {
+        "name": "Updated Size",  # Optional: The name of the option
+        "is_required": true,  # Optional: Whether customers must select this option
+        "sort_order": 2  # Optional: Display order
+    }
+    """
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({"message": "No input data provided"}), 400
+            
+        # Verify menu item and option exist
+        menu_item = db.session.get(MenuItem, item_id)
+        if not menu_item:
+            return jsonify({"message": "Menu item not found"}), 404
+        option = db.session.query(MenuItemOption).filter_by(id=option_id, menu_item_id=item_id).first()
+        if not option:
+            return jsonify({"message": "Option not found"}), 404
+        
+        current_app.logger.info(f"Updating option {option_id}: {data}")
+        
+        # Update allowed fields
+        update_fields = []
+        if "name" in data and data["name"]:
+            option.name = data["name"].strip()
+            update_fields.append("name")
+            
+        if "is_required" in data:
+            option.is_required = bool(data["is_required"])
+            update_fields.append("is_required")
+            
+        if "sort_order" in data:
+            try:
+                option.sort_order = int(data["sort_order"])
+                update_fields.append("sort_order")
+            except (ValueError, TypeError):
+                return jsonify({"message": "sort_order must be a number"}), 400
+        
+        if not update_fields:
+            return jsonify({"message": "No valid fields provided for update"}), 400
+            
+        option.updated_at = datetime.datetime.utcnow()
+        db.session.commit()
+        
+        current_app.logger.info(f"Successfully updated option {option_id}. Updated fields: {', '.join(update_fields)}")
+        return jsonify({
+            "message": "Option updated successfully",
+            "updated_fields": update_fields,
+            "option": {
+                "id": option.id,
+                "name": option.name,
+                "is_required": option.is_required,
+                "sort_order": option.sort_order
+            }
+        })
+        
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"Error updating option {option_id}: {str(e)}", exc_info=True)
+        return jsonify({"message": "Failed to update option", "error": str(e)}), 500
+
+
+@menu_items_bp.route("/<int:item_id>/options/<int:option_id>/choices/<int:choice_id>", methods=["PUT"])
+@jwt_required()
+@roles_required(["manager"])
+def update_option_choice(item_id, option_id, choice_id):
+    """Update a menu item option choice.
+    
+    Expected JSON payload:
+    {
+        "choice_name": "Updated Choice",  # Optional: Display name for the choice
+        "price_modifier": 1.25,  # Optional: Price adjustment in USD
+        "is_default": true,  # Optional: Whether this is the default selection
+        "sort_order": 3  # Optional: Display order within the option
+    }
+    """
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({"message": "No input data provided"}), 400
+            
+        # Verify menu item, option, and choice exist
+        menu_item = db.session.get(MenuItem, item_id)
+        if not menu_item:
+            return jsonify({"message": "Menu item not found"}), 404
+        option = db.session.query(MenuItemOption).filter_by(id=option_id, menu_item_id=item_id).first()
+        if not option:
+            return jsonify({"message": "Option not found"}), 404
+        choice = db.session.query(MenuItemOptionChoice).filter_by(id=choice_id, option_id=option_id).first()
+        if not choice:
+            return jsonify({"message": "Choice not found"}), 404
+        
+        current_app.logger.info(f"Updating choice {choice_id}: {data}")
+        
+        # Update allowed fields
+        update_fields = []
+        if "choice_name" in data and data["choice_name"]:
+            choice.name = data["choice_name"].strip()
+            update_fields.append("choice_name")
+            
+        if "price_modifier" in data:
+            try:
+                choice.price_delta = float(data["price_modifier"])
+                update_fields.append("price_modifier")
+            except (ValueError, TypeError):
+                return jsonify({"message": "price_modifier must be a number"}), 400
+                
+        if "is_default" in data:
+            is_default = bool(data["is_default"])
+            if is_default and not choice.is_default:
+                # Unset any existing default choices for this option
+                existing_defaults = MenuItemOptionChoice.query.filter_by(option_id=option_id, is_default=True).all()
+                for existing_choice in existing_defaults:
+                    existing_choice.is_default = False
+            choice.is_default = is_default
+            update_fields.append("is_default")
+            
+        if "sort_order" in data:
+            try:
+                choice.sort_order = int(data["sort_order"])
+                update_fields.append("sort_order")
+            except (ValueError, TypeError):
+                return jsonify({"message": "sort_order must be a number"}), 400
+        
+        if not update_fields:
+            return jsonify({"message": "No valid fields provided for update"}), 400
+            
+        choice.updated_at = datetime.datetime.utcnow()
+        db.session.commit()
+        
+        current_app.logger.info(f"Successfully updated choice {choice_id}. Updated fields: {', '.join(update_fields)}")
+        return jsonify({
+            "message": "Choice updated successfully",
+            "updated_fields": update_fields,
+            "choice": {
+                "id": choice.id,
+                "choice_name": choice.name,
+                "price_modifier": float(choice.price_delta),
+                "is_default": choice.is_default,
+                "sort_order": choice.sort_order
+            }
+        })
+        
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"Error updating choice {choice_id}: {str(e)}", exc_info=True)
+        return jsonify({"message": "Failed to update choice", "error": str(e)}), 500
+
+
+@menu_items_bp.route(
+    "/<int:item_id>/options/<int:option_id>", methods=["DELETE"]
+)
+@jwt_required()
+@roles_required(["manager"])
+def delete_menu_item_option(item_id, option_id):
+    """Delete a menu item option and all its choices."""
+    if request.method == "OPTIONS":
+        return (
+            "",
+            204,
+            {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "DELETE,OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+            },
+        )
+    try:
+        # Verify menu item and option exist
+        menu_item = db.session.get(MenuItem, item_id)
+        if not menu_item:
+            return jsonify({"message": "Menu item not found"}), 404
+        option = (
+            db.session.query(MenuItemOption)
+            .filter_by(id=option_id, menu_item_id=item_id)
+            .first()
+        )
+        if not option:
+            return jsonify({"message": "Option not found"}), 404
+
+        current_app.logger.info(
+            f"Deleting option {option_id} from menu item {item_id}"
+        )
+
+        db.session.delete(option)  # Cascade will delete all choices
+        db.session.commit()
+
+        return jsonify({"message": "Option deleted successfully"})
+
     except Exception as e:
         db.session.rollback()
         current_app.logger.error(
-            f"Error adding option for menu item {item_id}: {str(e)}"
+            f"Error deleting option {option_id}: {str(e)}", exc_info=True
         )
-        return jsonify({"message": "Failed to add option"}), 500
+        return jsonify({"message": "Failed to delete option", "error": str(e)}), 500
 
 
-# --- SHIM: Register /api/v1/menu-items/<id>/options at top-level for frontend compatibility ---
+@menu_items_bp.route(
+    "/<int:item_id>/options/<int:option_id>/choices/<int:choice_id>",
+    methods=["DELETE"],
+)
+@jwt_required()
+@roles_required(["manager"])
+def delete_option_choice(item_id, option_id, choice_id):
+    """Delete a menu item option choice."""
+    if request.method == "OPTIONS":
+        return (
+            "",
+            204,
+            {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "DELETE,OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+            },
+        )
+    try:
+        # Verify menu item, option, and choice exist
+        menu_item = db.session.get(MenuItem, item_id)
+        if not menu_item:
+            return jsonify({"message": "Menu item not found"}), 404
+        option = (
+            db.session.query(MenuItemOption)
+            .filter_by(id=option_id, menu_item_id=item_id)
+            .first()
+        )
+        if not option:
+            return jsonify({"message": "Option not found"}), 404
+        choice = (
+            db.session.query(MenuItemOptionChoice)
+            .filter_by(id=choice_id, option_id=option_id)
+            .first()
+        )
+        if not choice:
+            return jsonify({"message": "Choice not found"}), 404
 
-def register_menu_item_options_shim(app):
-    app.add_url_rule(
-        "/api/v1/menu-items/<int:item_id>/options",
-        view_func=get_menu_item_options,
-        methods=["GET", "OPTIONS"],
-    )
-    app.add_url_rule(
-        "/api/v1/menu-items/<int:item_id>/options",
-        view_func=add_menu_item_option,
-        methods=["POST"],
-    )
+        current_app.logger.info(f"Deleting choice {choice_id} from option {option_id}")
+
+        db.session.delete(choice)
+        db.session.commit()
+
+        return jsonify({"message": "Choice deleted successfully"})
+
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(
+            f"Error deleting choice {choice_id}: {str(e)}", exc_info=True
+        )
+        return jsonify({"message": "Failed to delete choice", "error": str(e)}), 500
